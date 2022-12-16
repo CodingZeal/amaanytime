@@ -25,6 +25,11 @@ const Routes = () => {
         <Route path="/contact" page={ContactPage} name="contact" />
       </Set>
       <Set wrap={MainLayout}>
+        <Route path="/terms-and-conditions" page={TermsAndConditionsPage} name="termsAndConditions" />
+        <Route path="/privacy-policy" page={PrivacyPolicyPage} name="privacyPolicy" />
+        <Route path="/disclaimers" page={DisclaimersPage} name="disclaimers" />
+      </Set>
+      <Set wrap={MainLayout}>
         <Route path="/" page={HomePage} name="home" />
         <Route notfound page={NotFoundPage} />
         <Route path="/forbidden" page={ForbiddenPage} name="forbidden" />

@@ -24,6 +24,15 @@ const Footer = () => {
           <li>
             <Link to={routes.waitingList()}>Waiting List</Link>
           </li>
+          <li>
+            <Link to={routes.termsAndConditions()}>Terms and Conditions</Link>
+          </li>
+          <li>
+            <Link to={routes.privacyPolicy()}>Privacy Policy</Link>
+          </li>
+          <li>
+            <Link to={routes.disclaimers()}>Disclaimers</Link>
+          </li>
         </ul>
       </nav>
       <div>
