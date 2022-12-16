@@ -20,6 +20,11 @@ const Routes = () => {
       <Route path="/verification" page={VerificationPage} name="verification" />
       <Route path="/verification-reset" page={VerificationResetPage} name="verificationReset" />
       <Set wrap={MainLayout}>
+        <Route path="/waiting-list" page={WaitingListPage} name="waitingList" />
+        <Route path="/about" page={AboutPage} name="about" />
+        <Route path="/contact" page={ContactPage} name="contact" />
+      </Set>
+      <Set wrap={MainLayout}>
         <Route path="/" page={HomePage} name="home" />
         <Route notfound page={NotFoundPage} />
         <Route path="/forbidden" page={ForbiddenPage} name="forbidden" />
