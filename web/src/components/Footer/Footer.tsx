@@ -10,7 +10,7 @@ const getCurrentYear = (): string => {
 const Footer = () => {
   return (
     <footer
-      className="text-center text-sm italic text-gray-500"
+      className="text-gray-500 text-center text-sm italic"
       data-testid="copyright"
     >
       <nav className="footer-nav w-full py-5 text-center font-semibold">
