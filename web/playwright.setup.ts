@@ -8,7 +8,7 @@ async function globalSetup() {
 
   const usernameInput = adminLogin.getByLabel('username')
   await usernameInput.click()
-  await usernameInput.fill('admin@example.com')
+  await usernameInput.fill('admin')
 
   const passwordInput = adminLogin.getByLabel('password')
   await passwordInput.click()
@@ -25,7 +25,7 @@ async function globalSetup() {
   await userLogin.goto(`${URL}/login`)
 
   await userLogin.locator('input[name="username"]').click()
-  await userLogin.locator('input[name="username"]').fill('user@example.com')
+  await userLogin.locator('input[name="username"]').fill('user')
   await userLogin.locator('input[name="password"]').click()
   await userLogin.locator('input[name="password"]').fill('password')
   await userLogin.getByRole('button', { name: 'Login' }).click()

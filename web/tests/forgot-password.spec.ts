@@ -18,7 +18,7 @@ test.describe('forgot password', () => {
 
     const usernameInput = page.locator('input[name=username]')
     await usernameInput.click()
-    await usernameInput.fill('admin@example.com')
+    await usernameInput.fill('admin')
 
     await page.getByText('Submit').click()
     await page.waitForURL('/login')

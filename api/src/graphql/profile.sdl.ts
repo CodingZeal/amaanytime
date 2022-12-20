@@ -2,6 +2,7 @@ export const schema = gql`
   type Profile {
     id: String!
     email: String!
+    username: String!
     name: String
     nickname: String
     pronouns: String

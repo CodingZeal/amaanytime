@@ -13,6 +13,7 @@ export function hashPassword(password: string, salt = 'ZEAL') {
 }
 
 const {
+  ADMIN_USERNAME = 'admin',
   ADMIN_EMAIL = 'admin@example.com',
   ADMIN_PASSWORD = 'password',
   USERS_PASSWORD = 'password',
@@ -31,12 +32,13 @@ function generateUser(
   override?: Prisma.UserCreateInput
 ): Prisma.UserCreateInput {
   return {
+    email: chance.email(),
+    hashedPassword: USERS_HASHED_PASSWORD,
     name: chance.name(),
     nickname: chance.word(),
     pronouns: pickRandom(['he/him', 'she/her', 'they/them', 'it/its']),
-    email: chance.email(),
-    hashedPassword: USERS_HASHED_PASSWORD,
     salt: USERS_SALT,
+    username: chance.word(),
     ...override,
   }
 }
@@ -99,6 +101,7 @@ export default async () => {
         email: ADMIN_EMAIL,
         hashedPassword: ADMIN_HASHED_PASSWORD,
         salt: ADMIN_SALT,
+        username: ADMIN_USERNAME,
       },
     })
 
@@ -107,6 +110,7 @@ export default async () => {
         email: 'user@example.com',
         hashedPassword: ADMIN_HASHED_PASSWORD,
         salt: ADMIN_SALT,
+        username: 'user',
       },
     })
 

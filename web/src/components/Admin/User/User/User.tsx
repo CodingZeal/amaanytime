@@ -66,6 +66,10 @@ const User = ({ user }) => {
               <td>{user.email}</td>
             </tr>
             <tr>
+              <th scope="row">Username</th>
+              <td>{user.username}</td>
+            </tr>
+            <tr>
               <th scope="row">Name</th>
               <td>{user.name}</td>
             </tr>

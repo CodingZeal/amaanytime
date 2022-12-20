@@ -24,10 +24,13 @@ export class LoginPageModel {
     await this.page.waitForLoadState()
   }
 
-  async loginBasicUser(email: string) {
-    const user = await MockUserEntity.upsert({ email })
+  async loginBasicUser(username: string) {
+    const user = await MockUserEntity.upsert({
+      username,
+      email: '',
+    })
     await this.goto()
-    await this._fillUsername(email)
+    await this._fillUsername(username)
     await this._fillPassword('password')
     await this._clickLogin()
     await this.page.waitForURL('/')

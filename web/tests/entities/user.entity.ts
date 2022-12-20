@@ -3,6 +3,7 @@ import { hashPassword } from '../../../scripts/seed'
 
 export interface IUser {
   email: string
+  username: string
   hashedPassword?: string
   salt?: string
   role?: string

@@ -21,6 +21,7 @@ export const associations = {
         email: 'user1@example.com',
         hashedPassword: 'xxxx',
         salt: 'pepper',
+        username: 'exampleuser',
       },
     }),
   },

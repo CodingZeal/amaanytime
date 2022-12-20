@@ -4,6 +4,7 @@ import { db } from '../../api/src/lib/db'
 
 const MOCK_USER = {
   email: 'snap@cracklepop.com',
+  username: 'snapcrackle',
 }
 
 test.afterAll(async () => {
@@ -29,7 +30,11 @@ test.describe('signup as a user', () => {
 
     const usernameInput = page.locator('input[name="username"]')
     await usernameInput.click()
-    await usernameInput.fill(MOCK_USER.email)
+    await usernameInput.fill(MOCK_USER.username)
+
+    const emailInput = page.locator('input[name="email"]')
+    await emailInput.click()
+    await emailInput.fill(MOCK_USER.email)
 
     const passwordInput = page.locator('input[name="password"]')
     await passwordInput.click()

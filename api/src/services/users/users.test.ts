@@ -45,6 +45,7 @@ describe('users', () => {
           active: true,
           admin: false,
           email: 'String4652567',
+          username: 'user4652567',
         },
       })
 
@@ -70,6 +71,7 @@ describe('users', () => {
             active: true,
             admin: false,
             email: 'String4652567',
+            username: 'exampleuser',
             teamIds: [teamId],
             roleIds: [`${teamId},${roleId}`],
           },
@@ -203,6 +205,7 @@ describe('users', () => {
     })
     expect(result.email).toEqual(result.id)
     expect(result.name).toEqual('Removed User')
+    expect(result.username).toEqual(result.id)
     expect(result.nickname).toEqual(null)
     expect(result.pronouns).toEqual(null)
     expect(result.active).toEqual(false)

@@ -9,7 +9,7 @@ test.describe('login as a user', () => {
 
     const userNameInput = page.getByLabel('Username')
     await userNameInput.click()
-    await userNameInput.fill('admin@example.com')
+    await userNameInput.fill('admin')
 
     const passwordInput = page.getByLabel('Password')
     await passwordInput.click()

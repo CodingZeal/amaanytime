@@ -92,6 +92,7 @@ export const removeUser: MutationResolvers['removeUser'] = async ({ id }) => {
     where: { id },
     data: {
       email: id,
+      username: id,
       name: 'Removed User',
       nickname: null,
       pronouns: null,

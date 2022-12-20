@@ -12,6 +12,7 @@ export const standard = defineScenario<Prisma.MembershipRoleCreateArgs>({
                 hashedPassword: 'String',
                 salt: 'String',
                 createdAt: '2022-08-17T12:40:29Z',
+                username: 'exampleuser',
               },
             },
             team: {
@@ -32,6 +33,7 @@ export const standard = defineScenario<Prisma.MembershipRoleCreateArgs>({
                 hashedPassword: 'String',
                 salt: 'String',
                 createdAt: '2022-08-17T12:40:29Z',
+                username: 'exampleuser2',
               },
             },
             team: {

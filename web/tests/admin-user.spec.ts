@@ -4,12 +4,14 @@ import { db } from '../../api/src/lib/db'
 
 const MOCK_USER = {
   email: 'cereal@example.com',
+  username: 'Captain Crunch',
   name: 'SnapCracklePop',
   nickname: 'waffleCrisp',
   pronouns: 'cheerios',
 }
 
 const NEW_MOCK_INFO = {
+  username: 'Potter',
   name: 'Harry Potter',
   nickname: 'Chosen One',
   pronouns: 'he/him',
@@ -37,6 +39,10 @@ test.describe('admin crud user', async () => {
     const emailInput = page.locator('input[name="email"]')
     await emailInput.click()
     await emailInput.fill(MOCK_USER.email)
+
+    const usernameInput = page.getByLabel('Username')
+    await usernameInput.click()
+    await usernameInput.fill(MOCK_USER.username)
 
     const nameInput = page.locator('input[name="name"]')
     await nameInput.click()
@@ -74,6 +80,9 @@ test.describe('admin crud user', async () => {
     const mockEmail = page.getByText(MOCK_USER.email)
     expect(mockEmail)
 
+    const mockUsername = page.getByText(MOCK_USER.username)
+    expect(mockUsername)
+
     const mockName = page.getByText(MOCK_USER.name)
     expect(mockName)
 
@@ -89,6 +98,10 @@ test.describe('admin crud user', async () => {
       where: { email: MOCK_USER.email },
     })
     await page.goto(`/admin/users/${newlyCreatedUser?.id}/edit`)
+
+    const usernameInput = page.getByLabel('Username')
+    await usernameInput.click()
+    await usernameInput.fill(NEW_MOCK_INFO.username)
 
     const nameInput = page.locator('input[name="name"]')
     await nameInput.click()

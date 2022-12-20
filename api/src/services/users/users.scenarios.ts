@@ -10,6 +10,7 @@ export const standard = defineScenario<Prisma.UserCreateArgs>({
     one: {
       data: {
         email: 'String4589593',
+        username: 'exampleuser',
         verifyToken: 'HarryPotter',
         active: true,
         ...DEFAULT_FIELDS,
@@ -18,6 +19,7 @@ export const standard = defineScenario<Prisma.UserCreateArgs>({
     two: {
       data: {
         email: 'String1300967',
+        username: 'exampleuser2',
         active: false,
         ...DEFAULT_FIELDS,
       },
@@ -44,12 +46,14 @@ export const associations = {
     withTeam: (): Prisma.UserCreateArgs => ({
       data: {
         email: 'teamUser@example.com',
+        username: 'teamUser',
         ...DEFAULT_FIELDS,
       },
     }),
     withoutTeam: (): Prisma.UserCreateArgs => ({
       data: {
         email: 'noTeamUser@example.com',
+        username: 'noTeamUser',
         ...DEFAULT_FIELDS,
       },
     }),
