@@ -1,10 +1,11 @@
+import { useState } from 'react'
+
 import { MetaTags } from '@redwoodjs/web'
 
 import UsersCell from 'src/components/Admin/User/UsersCell'
-import { useToggle } from 'src/lib/hooks'
 
 const UsersPage = () => {
-  const [showInactive, toggleShowInactive] = useToggle(false)
+  const [showInactive, toggleShowInactive] = useState(false)
 
   return (
     <>
@@ -15,7 +16,7 @@ const UsersPage = () => {
           className="mt-0.5 cursor-pointer"
           type="checkbox"
           checked={showInactive}
-          onChange={toggleShowInactive}
+          onChange={() => toggleShowInactive(!showInactive)}
         />
       </div>
       <UsersCell showInactive={showInactive} />

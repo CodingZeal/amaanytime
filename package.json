@@ -1,12 +1,10 @@
 {
-  "_template": "template[tags(config),json(scripts,workspaces)]",
   "private": true,
   "license": "MIT",
   "workspaces": {
     "packages": [
       "api",
-      "web",
-      "packages/*"
+      "web"
     ]
   },
   "devDependencies": {
@@ -22,8 +20,8 @@
     "root": true
   },
   "engines": {
-    "node": ">=14.19 <=16.x",
-    "yarn": ">=1.15"
+    "node": "^18.12.1",
+    "yarn": "^3.3.1"
   },
   "prisma": {
     "seed": "yarn rw exec seed",
@@ -32,12 +30,14 @@
   "packageManager": "yarn@3.2.1",
   "scripts": {
     "start": "node index.js",
+    "serve": "yarn rw serve",
     "build": "yarn rw build",
     "lint": "yarn eslint && yarn pretty",
     "eslint": "npx eslint .",
     "pretty": "npx prettier --check .",
     "pretty:fix": "npx prettier -c -w .",
     "dev": "yarn db:daemon && yarn rw dev",
+    "dev:nodb": "yarn rw dev",
     "test": "yarn testdb:daemon && yarn rw test",
     "test:nowatch": "yarn rw test --no-watch",
     "test:e2e": "./scripts/playwright.ts",

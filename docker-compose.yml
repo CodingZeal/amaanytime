@@ -1,4 +1,3 @@
-# template[tags(prisma,db), replace_all(redwood:${app_name})]
 version: '3.8'
 services:
   db:

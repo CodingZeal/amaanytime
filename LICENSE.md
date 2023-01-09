@@ -1,7 +1,6 @@
-<!-- template[tags(markdown)] -->
 # MIT License
 
-## Copyright (YEAR) (COPYRIGHT HOLDER)
+## Copyright 2023 Coding Zeal
 
 - [MIT doc](https://opensource.org/licenses/MIT)
 - [License Types](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
