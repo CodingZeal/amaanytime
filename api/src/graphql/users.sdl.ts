@@ -8,6 +8,7 @@ export const schema = gql`
     pronouns: String
     active: Boolean!
     admin: Boolean!
+    avatar: String
     updatedAt: DateTime!
     createdAt: DateTime!
     memberships: [Membership]

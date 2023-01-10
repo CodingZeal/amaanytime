@@ -1,13 +1,68 @@
-/**
- * START --- SETUP TAILWINDCSS EDIT
- *
- * `yarn rw setup ui tailwindcss` placed these imports here
- * to inject Tailwind's styles into your CSS.
- * For more information, see: https://tailwindcss.com/docs/installation#include-tailwind-in-your-css
- */
+@import url('https://fonts.googleapis.com/css2?family=BioRhyme:wght@700;800&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap');
+
+@font-face {
+  font-family: 'mouse_memoir';
+  src: url('./fonts/mousememoirs-regular-webfont.woff2') format('woff2'),
+    url('./fonts/mousememoirs-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-/**
- * END --- SETUP TAILWINDCSS EDIT
- */
+
+@layer utilities {
+  .content {
+    content: '';
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-bg;
+  }
+
+  svg {
+    fill: currentColor;
+  }
+
+  form {
+    @apply mb-16;
+  }
+
+  label {
+    @apply block pb-2 font-slab text-base font-extrabold uppercase leading-6 text-black;
+  }
+
+  .field textarea,
+  .field input[type='text'],
+  .field input[type='email'],
+  .field input[type='tel'],
+  .field input[type='url'],
+  .field input[type='password'] {
+    @apply relative mt-[2px] ml-[2px] mr-0 mb-0 w-full border-2 border-black bg-transparent p-4 font-sans font-semibold outline-none focus:border-veridianGreen;
+  }
+
+  .input-url {
+    @apply relative;
+  }
+
+  /* have to use a class for this because you can't have a pseudo element on an input */
+  .input-url::after {
+    content: 'https://';
+    @apply absolute bottom-[18px] left-5 block font-sans text-lg font-bold text-punch;
+  }
+
+  .input-url input[type='url'] {
+    @apply pl-10;
+  }
+
+  .input-wrapper {
+    @apply relative;
+  }
+
+  .input-wrapper::before {
+    @apply content absolute -left-[2px] -top-[2px] h-full w-full bg-white;
+  }
+}

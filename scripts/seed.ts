@@ -39,6 +39,7 @@ function generateUser(
     pronouns: pickRandom(['he/him', 'she/her', 'they/them', 'it/its']),
     salt: USERS_SALT,
     username: chance.word(),
+    avatar: chance.avatar({ protocol: 'https' }),
     ...override,
   }
 }
@@ -82,6 +83,19 @@ async function _createRole(role) {
   })
 }
 
+async function generateQuestions(user) {
+  return db.question.create({
+    data: {
+      question: chance.sentence() + '?',
+      askedBy: {
+        connect: {
+          id: user.id,
+        },
+      },
+    },
+  })
+}
+
 export default async () => {
   try {
     const hasUsers = await db.user.findMany()
@@ -94,6 +108,8 @@ export default async () => {
 
     const teamsData = [...Array(5).fill({}).map(generateTeam)]
     const teams = await Promise.all(teamsData.map(_createTeam))
+
+    users.map((user) => generateQuestions(user))
 
     await db.user.create({
       data: {
