@@ -13,12 +13,12 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ '*' ]
+    branches:
+      - "*"
   pull_request:
     branches:
-      - main
-      - staging
-    paths-ignore: './scripts/seeds.ts'
+      - "*"
+
   schedule:
     - cron: '23 5 * * 5'
 
@@ -74,4 +74,3 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
-   -
