@@ -6352,6 +6352,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/crypto-js@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "@types/crypto-js@npm:4.1.1"
+  checksum: e53b712c5d3b72d19c67a06c8bbaaafd989d78f71a2168f1376c8fb84d5744e5166b58d79528a124645e13f13fe4d2c97ee8f03d649ef913e93ca6b8cee41370
+  languageName: node
+  linkType: hard
+
 "@types/debug@npm:4.1.7, @types/debug@npm:^4.1.7":
   version: 4.1.7
   resolution: "@types/debug@npm:4.1.7"
@@ -24352,6 +24359,7 @@ __metadata:
     "@redwoodjs/router": ^3.8.0
     "@redwoodjs/web": ^3.8.0
     "@testing-library/user-event": ^14.4.3
+    "@types/crypto-js": ^4.1.1
     autoprefixer: ^10.4.13
     date-fns: ^2.29.3
     postcss: ^8.4.20

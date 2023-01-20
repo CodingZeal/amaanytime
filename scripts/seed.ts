@@ -35,10 +35,10 @@ function generateUser(
     email: chance.email(),
     hashedPassword: USERS_HASHED_PASSWORD,
     name: chance.name(),
-    nickname: chance.word(),
+    nickname: chance.word({ syllables: 1 }),
     pronouns: pickRandom(['he/him', 'she/her', 'they/them', 'it/its']),
     salt: USERS_SALT,
-    username: chance.word(),
+    username: chance.word({ syllables: 2 }),
     avatar: chance.avatar({ protocol: 'https' }),
     ...override,
   }
