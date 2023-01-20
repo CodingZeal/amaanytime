@@ -5,7 +5,7 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import FeedBlock from '../FeedBlock/FeedBlock'
 
 export const QUERY = gql`
-  query FindQuestions {
+  query AllQuestionsQuery {
     questions {
       id
       question

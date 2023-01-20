@@ -32,9 +32,6 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - name: Run Migrations
-        run: yarn db:setup
-
       - name: Build app
         run: yarn rw build
 
@@ -42,6 +39,6 @@ jobs:
         run: npx playwright install-deps && npx playwright install
 
       - name: Run Playwright
-        run: yarn test:e2e:ci
+        run: yarn test:e2e
 
 
