@@ -11,3 +11,4 @@ web/types/*
 .vscode
 *pw.json
 .yarnrc.yml
+web/public

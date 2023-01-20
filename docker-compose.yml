@@ -3,26 +3,16 @@ services:
   db:
     image: postgres:14.1
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=development
-      - POSTGRES_DB=redwood_dev
-      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_USER=amauser
+      - POSTGRES_PASSWORD=amapass
+      - PGDATA=/var/lib/postgresql/data
+      - POSTGRES_MULTIPLE_DATABASES="ama_dev,ama_test"
     ports:
       - 5432:5432
     volumes:
-      - redwood_dev:/var/lib/postgresql/data/pgdata
-  testdb:
-    image: postgres:14.1
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=test
-      - POSTGRES_DB=redwood_test
-      - PGDATA=/var/lib/postgresql/data/pgdata
-    ports:
-      - 5433:5432
-    volumes:
-      - redwood_test:/var/lib/postgresql/data/pgdata
+      - ./scripts/entrypoints:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
 
 volumes:
-  redwood_dev:
-  redwood_test:
+  postgres_data:
