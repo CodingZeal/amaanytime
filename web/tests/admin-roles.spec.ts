@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test'
-
-import { db } from '../../api/src/lib/db'
+import { db } from 'api/src/lib/db'
 
 const MOCK_ROLE = {
   name: 'SnapCracklePop',
@@ -54,6 +53,7 @@ test.describe('admin crud role', async () => {
   })
 
   test('admin edits a role', async ({ page }) => {
+    page.pause()
     const newlyCreatedRole = await db.role.findFirst({
       where: { name: MOCK_ROLE.name },
     })

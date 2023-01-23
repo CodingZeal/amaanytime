@@ -1,5 +1,6 @@
 import { FatalErrorBoundary, RedwoodProvider } from '@redwoodjs/web'
 import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
+import { Toaster } from '@redwoodjs/web/dist/toast'
 
 import FatalErrorPage from 'src/pages/FatalErrorPage'
 import Routes from 'src/Routes'
@@ -14,6 +15,7 @@ const App = () => (
     <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
       <AuthProvider>
         <RedwoodApolloProvider useAuth={useAuth}>
+          <Toaster toastOptions={{ className: 'bg-white', duration: 6000 }} />
           <Routes />
         </RedwoodApolloProvider>
       </AuthProvider>

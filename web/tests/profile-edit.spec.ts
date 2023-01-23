@@ -62,7 +62,7 @@ test.describe('edit profile', () => {
     })
     expect(profileLinkWithNewName)
 
-    const nickNameInput = page.getByLabel('Nickname')
+    const nickNameInput = page.locator('input[name="nickname"]')
     await nickNameInput.click()
     await nickNameInput.fill(MOCK_PROFILE.nickname)
     await saveButton.click()

@@ -1,9 +1,19 @@
 module.exports = {
   content: ['src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    fontSize: {
+      xs: '0.6rem',
+      sm: '0.8rem',
+      base: '1rem',
+      xl: '1.25rem',
+      '2xl': '1.563rem',
+      '3xl': '1.953rem',
+      '4xl': '2.441rem',
+      '5xl': '3.052rem',
+    },
     extend: {
       backgroundImage: {
-        bg: "url('./images/bg.jpg')",
+        bg: "url('./assets/bg.jpg')",
       },
       backgroundSize: {
         half: '50% 100%',
@@ -22,6 +32,7 @@ module.exports = {
         eternity: '##2d2d2b', // almost black
         sonicSilver: '#747474', // mid gray
       },
+      spacing: {},
     },
     fontFamily: {
       sans: ['Montserrat', 'sans-serif'],

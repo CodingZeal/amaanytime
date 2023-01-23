@@ -7,15 +7,17 @@ async function globalSetup() {
   const adminLogin = await browser.newPage()
   await adminLogin.goto(`${BASE_URL}/login`)
 
-  const usernameInput = adminLogin.getByLabel('username')
+  const usernameInput = adminLogin.getByRole('textbox', { name: 'Username' })
   await usernameInput.click()
   await usernameInput.fill('admin')
 
-  const passwordInput = adminLogin.getByLabel('password')
+  const passwordInput = adminLogin.getByRole('textbox', { name: 'Password' })
   await passwordInput.click()
   await passwordInput.fill('password')
 
   await adminLogin.getByRole('button', { name: 'Login' }).click()
+  await adminLogin.waitForURL(BASE_URL, { waitUntil: 'domcontentloaded' })
+  await adminLogin.getByRole('button', { name: 'Log in' }).click()
   await adminLogin.waitForURL(BASE_URL, { waitUntil: 'domcontentloaded' })
 
   await adminLogin
@@ -30,6 +32,18 @@ async function globalSetup() {
   await userLogin.locator('input[name="password"]').click()
   await userLogin.locator('input[name="password"]').fill('password')
   await userLogin.getByRole('button', { name: 'Login' }).click()
+  await userLogin.waitForURL(BASE_URL, { waitUntil: 'domcontentloaded' })
+  const usersUserInput = userLogin.getByRole('textbox', { name: 'Username' })
+  await usersUserInput.click()
+  await usersUserInput.fill('user')
+
+  const usersPasswordInput = userLogin.getByRole('textbox', {
+    name: 'Password',
+  })
+  await usersPasswordInput.click()
+  await usersPasswordInput.fill('password')
+
+  await userLogin.getByRole('button', { name: 'Log in' }).click()
   await userLogin.waitForURL(BASE_URL, { waitUntil: 'domcontentloaded' })
 
   await userLogin

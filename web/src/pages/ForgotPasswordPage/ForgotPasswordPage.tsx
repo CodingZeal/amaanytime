@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 import { Form, Label, TextField, Submit, FieldError } from '@redwoodjs/forms'
 import { navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
-import { toast, Toaster } from '@redwoodjs/web/toast'
+import { toast } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
 
@@ -42,11 +42,13 @@ const ForgotPasswordPage = () => {
       <MetaTags title="Forgot Password" />
 
       <main className="rw-main">
-        <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
         <div className="rw-scaffold rw-login-container">
           <div className="rw-segment">
             <header className="rw-segment-header">
-              <h2 className="rw-heading rw-heading-secondary">
+              <h2
+                data-testid="forgot-password-heading"
+                className="rw-heading rw-heading-secondary"
+              >
                 Forgot Password
               </h2>
             </header>
@@ -63,6 +65,7 @@ const ForgotPasswordPage = () => {
                       Username
                     </Label>
                     <TextField
+                      data-testid="forgot-password-username"
                       name="username"
                       className="rw-input"
                       errorClassName="rw-input rw-input-error"
@@ -76,7 +79,12 @@ const ForgotPasswordPage = () => {
                   </div>
 
                   <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-blue">Submit</Submit>
+                    <Submit
+                      data-testid="forgot-password-submit"
+                      className="rw-button rw-button-blue"
+                    >
+                      Submit
+                    </Submit>
                   </div>
                 </Form>
               </div>

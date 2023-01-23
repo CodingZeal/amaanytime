@@ -5602,7 +5602,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addons@npm:6.5.16":
+"@storybook/addons@npm:6.5.16, @storybook/addons@npm:^6.5.15":
   version: 6.5.16
   resolution: "@storybook/addons@npm:6.5.16"
   dependencies:
@@ -6448,7 +6448,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/theming@npm:6.5.16":
+"@storybook/theming@npm:6.5.16, @storybook/theming@npm:^6.5.15":
   version: 6.5.16
   resolution: "@storybook/theming@npm:6.5.16"
   dependencies:
@@ -26620,6 +26620,8 @@ __metadata:
     "@redwoodjs/router": 4.0.1
     "@redwoodjs/web": 4.0.1
     "@simplewebauthn/browser": ^7.0.0
+    "@storybook/addons": ^6.5.15
+    "@storybook/theming": ^6.5.15
     "@testing-library/user-event": ^14.4.3
     "@types/crypto-js": ^4.1.1
     autoprefixer: ^10.4.13

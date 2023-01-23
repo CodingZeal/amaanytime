@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 import { Form, Label, TextField, Submit, FieldError } from '@redwoodjs/forms'
 import { navigate, routes } from '@redwoodjs/router'
 import { MetaTags, useMutation } from '@redwoodjs/web'
-import { toast, Toaster } from '@redwoodjs/web/toast'
+import { toast } from '@redwoodjs/web/toast'
 
 const VERIFY_RESET_MUTATION = gql`
   mutation VerificationResetMutation($email: String!) {
@@ -11,7 +11,7 @@ const VERIFY_RESET_MUTATION = gql`
   }
 `
 
-const VerificationResetPage = ({ email }) => {
+const VerificationResetPage = ({ email }: { email?: string }) => {
   const [verifyReset, { loading }] = useMutation(VERIFY_RESET_MUTATION, {
     onCompleted: (response) => {
       toast.success(
@@ -38,7 +38,6 @@ const VerificationResetPage = ({ email }) => {
       <MetaTags title="Forgot Password" />
 
       <main className="rw-main">
-        <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
         <div className="rw-scaffold rw-login-container">
           <div className="rw-segment">
             <header className="rw-segment-header">

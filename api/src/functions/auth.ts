@@ -128,8 +128,8 @@ export const handler = async (event, context) => {
         data: {
           username: username,
           email: userAttributes.email,
-          hashedPassword: hashedPassword,
-          salt: salt,
+          hashedPassword,
+          salt,
           verifyToken: randomUUID(),
         },
       })
@@ -158,7 +158,7 @@ export const handler = async (event, context) => {
 
   const authHandler = new DbAuthHandler(event, context, {
     // Provide prisma db client
-    db: db,
+    db,
 
     // The name of the property you'd call on `db` to access your user table.
     // i.e. if your Prisma model is named `User` this value would be `user`, as in `db.user`
@@ -170,6 +170,8 @@ export const handler = async (event, context) => {
     authFields: {
       id: 'id',
       username: 'username',
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       email: 'email',
       hashedPassword: 'hashedPassword',
       salt: 'salt',

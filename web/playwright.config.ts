@@ -43,7 +43,6 @@ const BROWSERS_TO_RUN = process.env.BROWSERS?.split(',')
 const config: PlaywrightTestConfig = {
   globalSetup: require.resolve('./playwright.setup.ts'),
   testDir: './tests',
-
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
