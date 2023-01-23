@@ -21,7 +21,7 @@ const Navigation = () => {
   return (
     <div>
       <div data-testid="nav" className="my-3 flex">
-        <ul className="flex flex-row items-start">
+        <ul className="mx-4 flex flex-row items-start">
           <LinkItem to={routes.home()}>Home</LinkItem>
           {isAuthenticated ? (
             <li data-testid="nav__link-item" className="mr-3 cursor-pointer">

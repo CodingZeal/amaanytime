@@ -5,6 +5,7 @@ tmp
 api/types/*
 web/playwright-report/*
 web/types/*
+web/public/*
 .github
 .yarn
 ./index.js

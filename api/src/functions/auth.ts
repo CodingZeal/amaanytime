@@ -7,7 +7,8 @@ import { email as verificationEmail } from 'src/emails/user-verification'
 import { db } from 'src/lib/db'
 import { sendEmail } from 'src/lib/mailer'
 
-export const handler = async (event, context) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const handler = async (event: any, context: any) => {
   const forgotPasswordOptions = {
     // handler() is invoked after verifying that a user was found with the given
     // username. This is where you can send the user an email with a link to
@@ -126,8 +127,8 @@ export const handler = async (event, context) => {
         data: {
           username: username,
           email: userAttributes.email,
-          hashedPassword: hashedPassword,
-          salt: salt,
+          hashedPassword,
+          salt,
           verifyToken: randomUUID(),
         },
       })
@@ -149,7 +150,7 @@ export const handler = async (event, context) => {
 
   const authHandler = new DbAuthHandler(event, context, {
     // Provide prisma db client
-    db: db,
+    db,
 
     // The name of the property you'd call on `db` to access your user table.
     // i.e. if your Prisma model is named `User` this value would be `user`, as in `db.user`
@@ -161,6 +162,8 @@ export const handler = async (event, context) => {
     authFields: {
       id: 'id',
       username: 'username',
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       email: 'email',
       hashedPassword: 'hashedPassword',
       salt: 'salt',

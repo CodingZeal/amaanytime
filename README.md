@@ -33,6 +33,8 @@ yarn rw dev
 ---
 
 ### Testing
+
+
 ```terminal
 # both api and web
 yarn test
@@ -42,6 +44,20 @@ yarn test:nowatch
 
 # playwright end to end tests
 yarn test:e2e
+```
+
+### Storybook
+
+the config files are located in web/config/storybok*
+when reading the [storybook docs](https://storybook.js.org/docs/react/get-started/introduction) they will reference config files not found in this project. The list below provides the interface for these. Note: these configs will override any defaults that redwood has set. You can read more [here](https://redwoodjs.com/docs/storybook#getting-started-with-storybook)
+
+- storybook.config.js -> main.js
+- storybook.manager.js -> manager.js
+- storybook.preview.js -> preview.js
+
+```terminal
+# for development run without a cache
+yarn rw storybook --no-manager-cache
 ```
 
 ---

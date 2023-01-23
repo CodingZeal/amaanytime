@@ -22,47 +22,4 @@
   body {
     @apply bg-bg;
   }
-
-  svg {
-    fill: currentColor;
-  }
-
-  form {
-    @apply mb-16;
-  }
-
-  label {
-    @apply block pb-2 font-slab text-base font-extrabold uppercase leading-6 text-black;
-  }
-
-  .field textarea,
-  .field input[type='text'],
-  .field input[type='email'],
-  .field input[type='tel'],
-  .field input[type='url'],
-  .field input[type='password'] {
-    @apply relative mt-[2px] ml-[2px] mr-0 mb-0 w-full border-2 border-black bg-transparent p-4 font-sans font-semibold outline-none focus:border-veridianGreen;
-  }
-
-  .input-url {
-    @apply relative;
-  }
-
-  /* have to use a class for this because you can't have a pseudo element on an input */
-  .input-url::after {
-    content: 'https://';
-    @apply absolute bottom-[18px] left-5 block font-sans text-lg font-bold text-punch;
-  }
-
-  .input-url input[type='url'] {
-    @apply pl-10;
-  }
-
-  .input-wrapper {
-    @apply relative;
-  }
-
-  .input-wrapper::before {
-    @apply content absolute -left-[2px] -top-[2px] h-full w-full bg-white;
-  }
 }

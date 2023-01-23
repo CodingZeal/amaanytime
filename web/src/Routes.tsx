@@ -5,7 +5,7 @@ import { AdminLayout } from './layouts/Admin/AdminLayout'
 import { RolesLayout } from './layouts/Admin/RolesLayout'
 import { TeamsLayout } from './layouts/Admin/TeamsLayout'
 import { UsersLayout } from './layouts/Admin/UsersLayout'
-import { MainLayout } from './layouts/MainLayout/MainLayout'
+import { MainLayout } from './layouts/MainLayout'
 import { ProfileLayout } from './layouts/ProfileLayout'
 
 const Routes = () => {

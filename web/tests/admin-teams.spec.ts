@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test'
-
-import { db } from '../../api/src/lib/db'
+import { db } from 'api/src/lib/db'
 
 const MOCK_TEAM = {
   name: 'Cheerios',
