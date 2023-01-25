@@ -29,7 +29,7 @@ module.exports = {
         veridianGreen: '#00979d', // bright teal
         heatWave: '#ff7b00', // orange
         gray: '#969187', // beige / dark tan
-        eternity: '##2d2d2b', // almost black
+        eternity: '#2d2d2b', // almost black
         sonicSilver: '#747474', // mid gray
       },
       spacing: {},

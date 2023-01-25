@@ -4,7 +4,7 @@ import { LoginPageModel } from './poms/LoginPagePom'
 
 const MOCK_PROFILE = {
   name: 'snap',
-  nickname: 'crackle',
+  username: 'crackle',
   pronouns: 'cereal',
 }
 
@@ -26,15 +26,15 @@ test.describe('edit profile', () => {
 
   test('should save profile changes', async ({ page }) => {
     const nameInput = page.locator('input[name="name"]')
-    const nicknameInput = page.locator('input[name="nickname"]')
+    const usernameInput = page.locator('input[name="username"]')
     const pronounsInput = page.locator('input[name="pronouns"]')
-    const saveButton = page.locator('text=Save')
+    const saveButton = page.locator('text=UPDATE PROFILE')
 
     await nameInput.click()
     await nameInput.fill(MOCK_PROFILE.name)
 
-    await nicknameInput.click()
-    await nicknameInput.fill(MOCK_PROFILE.nickname)
+    await usernameInput.click()
+    await usernameInput.fill(MOCK_PROFILE.username)
 
     await pronounsInput.click()
     await pronounsInput.fill(MOCK_PROFILE.pronouns)
@@ -42,7 +42,7 @@ test.describe('edit profile', () => {
     await saveButton.click()
     await page.waitForURL('/profile', { waitUntil: 'domcontentloaded' })
     expect(await nameInput.inputValue()).toEqual(MOCK_PROFILE.name)
-    expect(await nicknameInput.inputValue()).toEqual(MOCK_PROFILE.nickname)
+    expect(await usernameInput.inputValue()).toEqual(MOCK_PROFILE.username)
     expect(await pronounsInput.inputValue()).toEqual(MOCK_PROFILE.pronouns)
   })
 
@@ -54,7 +54,7 @@ test.describe('edit profile', () => {
     await nameInput.click()
     await nameInput.fill(MOCK_PROFILE.name)
 
-    const saveButton = page.getByRole('button', { name: 'Save' })
+    const saveButton = page.getByRole('button', { name: 'UPDATE PROFILE' })
     await saveButton.click()
 
     const profileLinkWithNewName = page.getByRole('link', {
@@ -62,13 +62,13 @@ test.describe('edit profile', () => {
     })
     expect(profileLinkWithNewName)
 
-    const nickNameInput = page.locator('input[name="nickname"]')
-    await nickNameInput.click()
-    await nickNameInput.fill(MOCK_PROFILE.nickname)
+    const usernameInput = page.locator('input[name="username"]')
+    await usernameInput.click()
+    await usernameInput.fill(MOCK_PROFILE.username)
     await saveButton.click()
 
     const profileLinkWithNewNickName = page.getByRole('link', {
-      name: MOCK_PROFILE.nickname,
+      name: MOCK_PROFILE.username,
     })
     expect(profileLinkWithNewNickName)
   })
