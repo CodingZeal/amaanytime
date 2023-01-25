@@ -33,6 +33,10 @@ model User {
   active              Boolean      @default(true)
   admin               Boolean      @default(false)
   avatar              String?
+  bio                 String?
+  cover               String?
+  location            String?
+  website             String?
   hashedPassword      String
   salt                String
   resetToken          String?

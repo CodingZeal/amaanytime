@@ -37,7 +37,7 @@ describe('EditProfileCell', () => {
 
   it('renders h2 successfully', async () => {
     render(<Success profile={standard().profile} />)
-    const element = screen.getByText('Edit Profile')
+    const element = screen.getByText('My Profile')
 
     expect(element).toBeInTheDocument()
     expect(element).toBeVisible()

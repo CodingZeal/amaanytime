@@ -6,6 +6,10 @@ export const schema = gql`
     name: String
     nickname: String
     pronouns: String
+    bio: String
+    cover: String
+    location: String
+    website: String
   }
   type Query {
     profile: Profile @requireAuth
@@ -16,6 +20,11 @@ export const schema = gql`
     name: String
     nickname: String
     pronouns: String
+    bio: String
+    cover: String
+    location: String
+    website: String
+    username: String
   }
 
   input UpdatePasswordInput {

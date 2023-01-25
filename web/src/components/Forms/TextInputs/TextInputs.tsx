@@ -21,6 +21,7 @@ export interface IInputProps {
   required?: boolean
   tabIndex?: number
   placeholder?: string
+  className?: string
 }
 
 const INPUT_CLASSES =
@@ -40,7 +41,7 @@ const DefaultLabel = (props: IInputProps) => (
 )
 
 export const TextInput = (props: IInputProps) => (
-  <div className="mb-7 md:mb-0">
+  <div className={`mb-7 md:mb-0 ${props.className}`}>
     {props.label && <DefaultLabel {...props} />}
     <div className={`${MAX_INPUT_WIDTH} bg-white`}>
       <InputField
