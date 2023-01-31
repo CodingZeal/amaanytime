@@ -28,7 +28,7 @@ const SiteLinks = () => (
         borderTop: 'solid 2px black',
         borderBottom: 'solid 2px black',
       }}
-      className="flex w-11/12 flex-col items-center justify-between py-2 md:flex-row lg:w-11/12 lg:justify-center lg:gap-4 lg:py-4"
+      className="flex h-28 w-full flex-wrap items-center justify-evenly py-2 px-6 md:h-20 md:flex-row md:justify-between md:px-20 lg:w-11/12 lg:justify-center lg:gap-4 lg:py-4"
     >
       {FOOTER_ITEMS.flatMap((item) => [
         <Dot key={`${item.text}-dot`} />,
@@ -69,7 +69,7 @@ const FOOTER_ITEMS = [
 
 const LinkItem = ({ children, link }) => {
   return (
-    <div className="text-xs font-semibold md:text-sm">
+    <div className="text-md font-semibold md:text-sm">
       <Link to={link}>{children} </Link>
     </div>
   )
