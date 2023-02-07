@@ -123,7 +123,11 @@ const DesktopLoginForm = ({
       <div className="font-condensed text-[110px] uppercase md:leading-10">
         Sign In
       </div>
-      <TextInput name="username" label="username" />
+      <TextInput
+        name="username"
+        label="username"
+        inputProps={{ autoFocus: true }}
+      />
       <ForgotPasswordInput name="password" label="password" type="password" />
       <div className="flex max-w-[500px] items-center justify-between py-3">
         <DontHaveAccount />

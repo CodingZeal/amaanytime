@@ -12,7 +12,7 @@ import { Link, routes } from '@redwoodjs/router'
 
 export interface IInputProps {
   type?: string
-  inputProps?: InputFieldProps
+  inputProps?: Partial<InputFieldProps>
   labelProps?: LabelProps
   wrapperProps?: HTMLProps<HTMLDivElement>
   name: string
