@@ -24,6 +24,7 @@ export const getCurrentUser = async (session) => {
     where: { id: session.id },
     select: {
       admin: true,
+      avatar: true,
       email: true,
       id: true,
       memberships: true,
@@ -47,6 +48,7 @@ export const getCurrentUser = async (session) => {
 
   return {
     email: user.email,
+    avatar: user.avatar,
     id: user.id,
     name: user.name,
     nickname: user.nickname,
