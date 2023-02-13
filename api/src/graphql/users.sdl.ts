@@ -9,6 +9,12 @@ export const schema = gql`
     active: Boolean!
     admin: Boolean!
     avatar: String
+    bio: String
+    cover: String
+    location: String
+    website: String
+    questionsAsked: [Question]
+    questionsAnswered: [Question]
     updatedAt: DateTime!
     createdAt: DateTime!
     memberships: [Membership]
