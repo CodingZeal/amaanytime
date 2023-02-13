@@ -2,6 +2,7 @@ import type { Question } from '@prisma/client'
 
 import {
   questions,
+  questionsWithAnswers,
   question,
   createQuestion,
   updateQuestion,
@@ -20,6 +21,12 @@ describe('questions', () => {
     const result = await question({ id: scenario.question.one.id })
 
     expect(result).toEqual(scenario.question.one)
+  })
+
+  scenario('returns answered questions', async () => {
+    const result = await questionsWithAnswers()
+
+    expect(result.length).toEqual(2)
   })
 
   scenario('creates a question', async (scenario: StandardScenario) => {

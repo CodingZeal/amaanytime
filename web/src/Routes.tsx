@@ -30,13 +30,12 @@ const Routes = () => {
         <Route path="/disclaimers" page={DisclaimersPage} name="disclaimers" />
       </Set>
       <Set wrap={MainLayout}>
-        <Route path="/" page={HomePage} name="home" />
         <Route notfound page={NotFoundPage} />
         <Route path="/forbidden" page={ForbiddenPage} name="forbidden" />
       </Set>
       <Set wrap={MainLayout}>
         <Private unauthenticated="forbidden">
-          <Route path="/feed" page={FeedPage} name="feed" />
+          <Route path="/" page={FeedPage} name="home" />
           <Set wrap={ProfileLayout}>
             <Route path="/profile" page={ProfileEditProfilePage} name="profile" />
             <Route path="/profile/edit_password" page={ProfileEditPasswordPage} name="editPassword" />

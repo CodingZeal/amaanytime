@@ -30,6 +30,7 @@ export const standard = defineScenario<Prisma.QuestionCreateArgs>({
     two: {
       data: {
         question: 'String',
+        answer: 'AnsweredQuestion1',
         askedBy: {
           create: {
             username: 'String4015156',
@@ -46,6 +47,30 @@ export const standard = defineScenario<Prisma.QuestionCreateArgs>({
             hashedPassword: 'String',
             salt: 'String',
             updatedAt: '2022-12-28T18:55:10.851Z',
+          },
+        },
+      },
+    },
+    three: {
+      data: {
+        question: 'String',
+        answer: 'AnsweredQuestion2',
+        askedBy: {
+          create: {
+            username: 'String402497',
+            email: 'String6543984',
+            hashedPassword: 'String',
+            salt: 'String',
+            updatedAt: '2022-12-29T18:09:40.569Z',
+          },
+        },
+        answeredBy: {
+          create: {
+            username: 'String968728',
+            email: 'String68328992',
+            hashedPassword: 'String',
+            salt: 'String',
+            updatedAt: '2022-12-29T18:09:40.569Z',
           },
         },
       },
