@@ -1,12 +1,12 @@
-import type { FindQuestions } from 'types/graphql'
+import type { FindAnsweredQuestions } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import FeedBlock from '../FeedBlock/FeedBlock'
+import { FeedBlock } from '../FeedBlock'
 
 export const QUERY = gql`
-  query AllQuestionsQuery {
-    questions {
+  query FindAnsweredQuestions {
+    questionsWithAnswers {
       id
       question
       answer
@@ -25,6 +25,11 @@ export const QUERY = gql`
         name
         avatar
       }
+      answeredBy {
+        username
+        name
+        avatar
+      }
     }
   }
 `
@@ -37,8 +42,19 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error?.message}</div>
 )
 
-export const Success = ({ questions }: CellSuccessProps<FindQuestions>) => {
-  return questions?.map((question) => (
-    <FeedBlock key={question.id} question={question} />
-  ))
+export const Success = ({
+  questionsWithAnswers,
+}: CellSuccessProps<FindAnsweredQuestions>) => {
+  return (
+    <>
+      {questionsWithAnswers?.map((questionsWithAnswers) => {
+        return (
+          <FeedBlock
+            key={questionsWithAnswers.id}
+            question={questionsWithAnswers}
+          />
+        )
+      })}
+    </>
+  )
 }

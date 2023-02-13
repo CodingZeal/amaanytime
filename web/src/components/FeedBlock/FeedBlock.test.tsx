@@ -1,6 +1,6 @@
 import { render } from '@redwoodjs/testing/web'
 
-import FeedBlock from './FeedBlock'
+import { FeedBlock } from './FeedBlock'
 
 const mockprops = {
   id: 1,
@@ -15,6 +15,12 @@ const mockprops = {
   archive: false,
   askedByUserId: 'de0317cb-599f-490e-9ad3-a87509e129ea',
   askedBy: {
+    name: 'Dwight Shrute',
+    username: 'dwightshrute',
+    avatar:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
+  },
+  answeredBy: {
     name: 'Dwight Shrute',
     username: 'dwightshrute',
     avatar:

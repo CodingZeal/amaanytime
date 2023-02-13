@@ -10,6 +10,13 @@ export const questions: QueryResolvers['questions'] = () => {
   return db.question.findMany()
 }
 
+export const questionsWithAnswers: QueryResolvers['questions'] = () => {
+  return db.question.findMany({
+    where: { NOT: [{ answer: null }] },
+    orderBy: { updatedOn: 'desc' },
+  })
+}
+
 export const question: QueryResolvers['question'] = ({ id }) => {
   return db.question.findUnique({
     where: { id },
