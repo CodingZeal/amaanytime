@@ -7,24 +7,12 @@ import { EditPasswordForm } from './EditPasswordForm'
 describe('EditPasswordForm', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(
-        <EditPasswordForm
-          error={undefined}
-          loading={undefined}
-          onSave={undefined}
-        />
-      )
+      render(<EditPasswordForm error={undefined} onSave={undefined} />)
     }).not.toThrow()
   })
 
   it('renders existing password input', () => {
-    render(
-      <EditPasswordForm
-        error={undefined}
-        loading={undefined}
-        onSave={undefined}
-      />
-    )
+    render(<EditPasswordForm error={undefined} onSave={undefined} />)
     const oldPassword = screen.getByLabelText('Your Existing Password')
 
     expect(oldPassword).toBeInTheDocument()
@@ -32,13 +20,7 @@ describe('EditPasswordForm', () => {
   })
 
   it('renders new password input', () => {
-    render(
-      <EditPasswordForm
-        error={undefined}
-        loading={undefined}
-        onSave={undefined}
-      />
-    )
+    render(<EditPasswordForm error={undefined} onSave={undefined} />)
     const oldPassword = screen.getByLabelText('New Password')
 
     expect(oldPassword).toBeInTheDocument()
@@ -46,13 +28,7 @@ describe('EditPasswordForm', () => {
   })
 
   it('renders confirm password input', () => {
-    render(
-      <EditPasswordForm
-        error={undefined}
-        loading={undefined}
-        onSave={undefined}
-      />
-    )
+    render(<EditPasswordForm error={undefined} onSave={undefined} />)
     const oldPassword = screen.getByLabelText('Confirm New Password')
 
     expect(oldPassword).toBeInTheDocument()
@@ -61,32 +37,22 @@ describe('EditPasswordForm', () => {
 
   it('requires all fields', async () => {
     const mockSave = jest.fn()
-    render(
-      <EditPasswordForm
-        error={undefined}
-        loading={undefined}
-        onSave={mockSave}
-      />
-    )
+    render(<EditPasswordForm error={undefined} onSave={mockSave} />)
     const save = screen.getByRole('button')
     await waitFor(() => userEvent.click(save))
 
-    expect(screen.getByText('Existing Password is required')).toBeVisible()
-    expect(screen.getByText('New Password is required')).toBeVisible()
-    expect(screen.getByText('Confirm New Password is required')).toBeVisible()
+    expect(
+      screen.getByText('Your Existing Password is required!')
+    ).toBeVisible()
+    expect(screen.getByText('New Password is required!')).toBeVisible()
+    expect(screen.getByText('Confirm New Password is required!')).toBeVisible()
 
     expect(mockSave.mock.calls.length).toBe(0)
   })
 
   it('submits then calls onSave', async () => {
     const mockSave = jest.fn()
-    render(
-      <EditPasswordForm
-        error={undefined}
-        loading={undefined}
-        onSave={mockSave}
-      />
-    )
+    render(<EditPasswordForm error={undefined} onSave={mockSave} />)
 
     expect(mockSave.mock.calls.length).toBe(0)
 

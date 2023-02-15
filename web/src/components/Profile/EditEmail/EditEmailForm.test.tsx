@@ -7,24 +7,12 @@ import { EditEmailForm } from './EditEmailForm'
 describe('EditPasswordForm', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(
-        <EditEmailForm
-          error={undefined}
-          loading={undefined}
-          onSubmit={undefined}
-        />
-      )
+      render(<EditEmailForm onSave={undefined} />)
     }).not.toThrow()
   })
 
   it('renders a working form', () => {
-    render(
-      <EditEmailForm
-        error={undefined}
-        loading={undefined}
-        onSubmit={undefined}
-      />
-    )
+    render(<EditEmailForm onSave={undefined} />)
     const password = screen.getByLabelText('Your Password')
     const newEmail = screen.getByLabelText('Your New Email')
 
@@ -37,31 +25,19 @@ describe('EditPasswordForm', () => {
 
   it('requires all fields', async () => {
     const mockSave = jest.fn()
-    render(
-      <EditEmailForm
-        error={undefined}
-        loading={undefined}
-        onSubmit={mockSave}
-      />
-    )
+    render(<EditEmailForm onSave={mockSave} />)
     const save = screen.getByRole('button')
     await waitFor(() => userEvent.click(save))
 
-    expect(screen.getByText('Password is required')).toBeVisible()
-    expect(screen.getByText('New Email is required')).toBeVisible()
+    expect(screen.getByText('Your Password is required!')).toBeVisible()
+    expect(screen.getByText('Your New Email is required!')).toBeVisible()
 
     expect(mockSave.mock.calls.length).toBe(0)
   })
 
   it('submits then calls onSave', async () => {
     const mockSave = jest.fn()
-    render(
-      <EditEmailForm
-        error={undefined}
-        loading={undefined}
-        onSubmit={mockSave}
-      />
-    )
+    render(<EditEmailForm onSave={mockSave} />)
 
     expect(mockSave.mock.calls.length).toBe(0)
 

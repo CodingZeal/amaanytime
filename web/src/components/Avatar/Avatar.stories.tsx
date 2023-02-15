@@ -3,7 +3,14 @@ import type { ComponentMeta } from '@storybook/react'
 import { Avatar } from './Avatar'
 
 export const generated = () => {
-  return <Avatar alt={''} />
+  return (
+    <Avatar
+      user={{
+        name: '',
+        avatar: '',
+      }}
+    />
+  )
 }
 
 export default {

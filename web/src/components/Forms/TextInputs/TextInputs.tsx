@@ -29,19 +29,19 @@ const INPUT_CLASSES =
 
 const ERROR_CLASSES = 'border border-red-500'
 
-const MAX_INPUT_WIDTH = 'max-w-[500px]'
+const MAX_INPUT_WIDTH = 'max-w-[1000px]'
 
 const DefaultLabel = (props: IInputProps) => (
   <Label
     name={props.label}
     htmlFor={props.name}
-    className="text-sm font-bold uppercase"
+    className="font-slab text-base font-bold uppercase"
     {...props.labelProps}
   />
 )
 
 export const TextInput = (props: IInputProps) => (
-  <div className={`mb-7 md:mb-0 ${props.className}`}>
+  <div className={`mb-7 mr-2 md:mb-0 ${props.className}`}>
     {props.label && <DefaultLabel {...props} />}
     <div className={`${MAX_INPUT_WIDTH} bg-white`}>
       <InputField
@@ -52,7 +52,7 @@ export const TextInput = (props: IInputProps) => (
         validation={{
           required: {
             value: props.required,
-            message: `${props.name} is required!`,
+            message: `${props.label} is required!`,
           },
         }}
         placeholder={props.placeholder || ''}
@@ -65,7 +65,7 @@ export const TextInput = (props: IInputProps) => (
 )
 
 export const PasswordInput = (props: IInputProps) => (
-  <div className="mb-7 md:mb-0">
+  <div className={`mb-7 mr-2 md:mb-0 ${props.className}`}>
     {props.label && <DefaultLabel {...props} />}
     <div className={`${MAX_INPUT_WIDTH} bg-white`}>
       <PasswordField
@@ -75,7 +75,7 @@ export const PasswordInput = (props: IInputProps) => (
         validation={{
           required: {
             value: props.required,
-            message: `${props.name} is required!`,
+            message: `${props.label} is required!`,
           },
         }}
         placeholder={props.placeholder || ''}

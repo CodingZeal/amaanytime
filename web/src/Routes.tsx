@@ -34,7 +34,7 @@ const Routes = () => {
       </Set>
       <Set wrap={MainLayout}>
         <Private unauthenticated="forbidden">
-          <Route path="/" page={FeedPage} name="feed" />
+          <Route path="/" page={FeedPage} name="home" />
           <Route path="/user-profile/{id}" page={UserProfilePage} name="userProfile" />
           <Set wrap={ProfileLayout}>
             <Route path="/profile" page={ProfileEditProfilePage} name="profile" />
