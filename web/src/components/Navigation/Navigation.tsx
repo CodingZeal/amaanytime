@@ -60,9 +60,8 @@ const MobileView = () => {
             className="items-center"
           >
             <Avatar
-              name={currentUser.name}
+              user={currentUser}
               className="ml-5 h-[44px] w-[44px] border-4 border-punch bg-punch"
-              src={currentUser.avatar}
             />
           </button>
         )}
@@ -120,8 +119,7 @@ const DeskView = () => {
           <div className="relative top-[500px] font-condensed">
             <BgProfile className="relative" />
             <Avatar
-              name={currentUser.name}
-              src={currentUser.avatar}
+              user={currentUser}
               className="relative -top-[85px] ml-5 h-[72px] w-[72px] items-center border-4 border-punch bg-punch"
             />
             <p className="relative -top-36 left-[120px] text-3xl text-white">

@@ -11,7 +11,7 @@ const UPDATE_PASSWORD_MUTATION = gql`
 `
 
 const EditPassword = ({ profile }) => {
-  const [updatePassword, { loading, error }] = useMutation(
+  const [updatePassword, { error, loading }] = useMutation(
     UPDATE_PASSWORD_MUTATION,
     {
       onCompleted: () => {
@@ -34,9 +34,6 @@ const EditPassword = ({ profile }) => {
         } | Edit Password`}
       />
       <div className="rw-segment">
-        <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">Edit Password</h2>
-        </header>
         <div className="rw-segment-main">
           <EditPasswordForm error={error} loading={loading} onSave={onSave} />
         </div>

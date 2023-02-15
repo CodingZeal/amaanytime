@@ -15,7 +15,7 @@ const Update_EMAIL_MUTATION = gql`
 const EditEmail = ({ profile }) => {
   const { reauthenticate } = useAuth()
 
-  const [updateEmail, { loading, error }] = useMutation(Update_EMAIL_MUTATION, {
+  const [updateEmail, { error, loading }] = useMutation(Update_EMAIL_MUTATION, {
     onCompleted: async () => {
       await reauthenticate()
     },
@@ -24,7 +24,7 @@ const EditEmail = ({ profile }) => {
     },
   })
 
-  const onSubmit = (input) => {
+  const onSave = (input) => {
     if (input.newEmail === profile.email) {
       return null
     }
@@ -42,11 +42,8 @@ const EditEmail = ({ profile }) => {
         } | Edit Email`}
       />
       <div className="rw-segment" id="edit-email">
-        <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">Edit Email</h2>
-        </header>
         <div className="rw-segment-main">
-          <EditEmailForm error={error} loading={loading} onSubmit={onSubmit} />
+          <EditEmailForm error={error} loading={loading} onSave={onSave} />
         </div>
       </div>
     </>

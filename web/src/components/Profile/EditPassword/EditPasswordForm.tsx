@@ -1,23 +1,18 @@
 import { useRef } from 'react'
 
-import {
-  FieldError,
-  Form,
-  FormError,
-  Label,
-  PasswordField,
-  Submit,
-  useForm,
-} from '@redwoodjs/forms'
+import { Form, FormError, useForm } from '@redwoodjs/forms'
+
+import { ActionButton } from 'src/components/Forms/ActionButton'
+import { PasswordInput } from 'src/components/Forms/TextInputs'
 
 const EditPasswordForm = ({ error, loading, onSave }) => {
   const formMethods = useForm()
   const newPasswordRef = useRef()
 
   newPasswordRef.current = formMethods.watch('newPassword', '')
-
   return (
-    <div className="rw-form-wrapper">
+    <div className="mx-auto w-full px-5 md:px-10 lg:pr-[122px] lg:pl-[58px]">
+      <h2 className="font-condensed text-5xl text-punch">Edit Password</h2>
       <Form onSubmit={onSave} error={error} formMethods={formMethods}>
         <FormError
           error={error}
@@ -25,79 +20,35 @@ const EditPasswordForm = ({ error, loading, onSave }) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-
-        <Label
+        <PasswordInput
           name="existingPassword"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Your Existing Password
-        </Label>
-        <PasswordField
-          name="existingPassword"
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{
-            required: {
-              value: true,
-              message: 'Existing Password is required',
-            },
-          }}
-          autoComplete="current-password"
+          label="Your Existing Password"
+          className="my-10"
+          required
         />
-        <FieldError name="existingPassword" className="rw-field-error" />
-
-        <Label
+        <PasswordInput
           name="newPassword"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          New Password
-        </Label>
-        <PasswordField
-          name="newPassword"
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{
-            required: {
-              value: true,
-              message: 'New Password is required',
-            },
-          }}
-          autoComplete="new-password"
+          label="New Password"
+          className="my-10"
+          required
         />
-        <FieldError name="newPassword" className="rw-field-error" />
-
-        <Label
+        <PasswordInput
           name="confirmPassword"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Confirm New Password
-        </Label>
-        <PasswordField
-          name="confirmPassword"
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{
-            required: {
-              value: true,
-              message: 'Confirm New Password is required',
-            },
-            validate: (value: string) => {
-              if (value !== newPasswordRef.current) {
-                return 'Does not match New Password'
-              }
-            },
-          }}
-          autoComplete="new-password"
+          label="Confirm New Password"
+          className="my-10"
+          required
         />
-        <FieldError name="confirmPassword" className="rw-field-error" />
-
-        <div className="rw-button-group">
-          <Submit disabled={loading} className="rw-button rw-button-blue">
-            Update Password
-          </Submit>
+        <div className="flex max-w-[1000px] justify-end">
+          <ActionButton
+            loading={loading}
+            type="submit"
+            style={{
+              marginTop: 35,
+              width: 225,
+            }}
+          >
+            UPDATE PASSWORD
+          </ActionButton>
         </div>
       </Form>
     </div>

@@ -41,8 +41,7 @@ const EditProfile = ({ profile, onSave }) => {
       <div className="mt-[360px] md:mt-96">
         <div className="absolute -mt-8 md:-mx-2 md:-mt-20">
           <Avatar
-            name={profile.name}
-            src={profile.avatar}
+            user={profile}
             className="relative -mt-24 h-[120px] w-[120px] md:h-[160px] md:w-[160px]"
           />
           <CameraIcon className="relative -mt-24 ml-[20px] md:-mt-28 md:ml-10" />

@@ -1,82 +1,52 @@
 import { useRef } from 'react'
 
-import {
-  FieldError,
-  Form,
-  FormError,
-  Label,
-  PasswordField,
-  Submit,
-  TextField,
-  useForm,
-} from '@redwoodjs/forms'
+import { Form, FormError, useForm } from '@redwoodjs/forms'
 
-const EditEmailForm = ({ error, loading, onSubmit }) => {
+import { ActionButton } from 'src/components/Forms/ActionButton'
+import { PasswordInput, TextInput } from 'src/components/Forms/TextInputs'
+
+const EditEmailForm = ({ error, loading, onSave }) => {
   const formMethods = useForm()
   const newEmailRef = useRef()
 
   newEmailRef.current = formMethods.watch('newEmail', '')
 
   return (
-    <div className="rw-form-wrapper">
-      <Form onSubmit={onSubmit} error={error} formMethods={formMethods}>
+    <div className=" w-full px-5 md:px-10 lg:pr-[122px] lg:pl-[58px]">
+      <h2 className="font-condensed text-5xl text-punch">Edit Email</h2>
+      <Form error={error} onSubmit={onSave} formMethods={formMethods}>
         <FormError
           error={error}
           wrapperClassName="rw-form-error-wrapper"
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-
-        <Label
+        <PasswordInput
           name="password"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Your Password
-        </Label>
-
-        <PasswordField
-          name="password"
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{
-            required: {
-              value: true,
-              message: 'Password is required',
-            },
-          }}
+          label="Your Password"
+          className="my-10"
+          required
         />
-        <FieldError name="password" className="rw-field-error" />
-
-        <Label
-          name="newEmail"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Your New Email
-        </Label>
-
-        <h2 className="rw-heading rw-heading-secondary">
+        <h2 className="mt-10 -mb-10">
           Requires verification via email message
         </h2>
-
-        <TextField
+        <TextInput
           name="newEmail"
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{
-            required: {
-              value: true,
-              message: 'New Email is required',
-            },
-          }}
+          label="Your New Email"
+          className="my-10"
+          required
         />
-        <FieldError name="newEmail" className="rw-field-error" />
-
-        <div className="rw-button-group">
-          <Submit disabled={loading} className="rw-button rw-button-blue">
-            Update Email
-          </Submit>
+        <div className="flex max-w-[1000px] justify-end">
+          <ActionButton
+            loading={loading}
+            type="submit"
+            style={{
+              marginTop: 35,
+              width: 192,
+            }}
+          >
+            UPDATE EMAIL
+          </ActionButton>
         </div>
       </Form>
     </div>
