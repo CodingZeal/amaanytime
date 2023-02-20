@@ -13,6 +13,7 @@ interface Size {
 interface IDeviceInfo extends Size {
   isMobile: boolean
   isIPad: boolean
+  isDesktop: boolean
 }
 
 export function useDevice(): IDeviceInfo {
@@ -46,5 +47,6 @@ export function useDevice(): IDeviceInfo {
     height: windowSize.height,
     isMobile,
     isIPad,
+    isDesktop: !isMobile && !isIPad,
   }
 }

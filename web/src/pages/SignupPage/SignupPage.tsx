@@ -1,16 +1,17 @@
 import { useEffect } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
-import { Form, Submit } from '@redwoodjs/forms'
-import { Link, navigate, routes } from '@redwoodjs/router'
+import { navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { TextInput, PasswordInput } from 'src/components/Forms/TextInputs'
-import { MainLayout } from 'src/layouts/MainLayout'
+import { SignUpForm } from 'src/components/Forms'
+import { AuthLayout } from 'src/layouts/Auth/AuthLayout'
 
-const SignupPage = () => {
-  const { isAuthenticated, signUp } = useAuth()
+export default function SignUpPage() {
+  const { signUp } = useAuth()
+
+  const { isAuthenticated } = useAuth()
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -18,42 +19,41 @@ const SignupPage = () => {
     }
   }, [isAuthenticated])
 
-  const onSubmit = async (data) => {
-    const response = await signUp({ ...data })
+  const handleSignUp = async (data: Record<string, unknown>) => {
+    try {
+      const { id, error } = await signUp({ ...data })
 
-    if (response.message) {
-      toast(response.message)
-    } else if (response.error) {
-      toast.error(response.error)
-    } else {
-      // user is signed in automatically
-      toast.success('Welcome!')
+      if (error === 'User not Verified') {
+        navigate(routes.verificationReset({ email: data.email as string }))
+        return
+      }
+
+      if (error) {
+        toast.error(error)
+        return
+      }
+
+      if (id) {
+        toast.success(
+          'Account created!\nCheck your email for a verification link.'
+        )
+        return
+      }
+
+      throw new Error('Something unexpected occured')
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message)
+      }
+      console.error(err)
     }
   }
 
   return (
-    <MainLayout>
-      <MetaTags title="Signup" />
-      <main className="">
-        <Form onSubmit={onSubmit} className="m-5">
-          <h2 className="m-5">Signup</h2>
-          <TextInput name="email" label="email" />
-          <TextInput name="username" label="username" />
-          <PasswordInput name="password" label="password" type="password" />
-          <PasswordInput name="repeat" label="repeat" type="password" />
-          <div className="m-5 flex items-center justify-between">
-            <Submit className="rw-button rw-button-blue">Sign Up</Submit>
-            <div>
-              <span>Already have an account?</span>{' '}
-              <Link to={routes.login()} className="rw-link">
-                Log in!
-              </Link>
-            </div>
-          </div>
-        </Form>
-      </main>
-    </MainLayout>
+    <AuthLayout>
+      <MetaTags title="Sign Up" />
+      <div className="hidden lg:block"></div>
+      <SignUpForm handleSignUp={handleSignUp} />
+    </AuthLayout>
   )
 }
-
-export default SignupPage

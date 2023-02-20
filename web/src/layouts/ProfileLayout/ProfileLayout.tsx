@@ -7,7 +7,7 @@ type ProfileLayoutProps = {
   children?: React.ReactNode
 }
 
-const ProfileLayout = ({ children }: ProfileLayoutProps) => {
+export const ProfileLayout = ({ children }: ProfileLayoutProps) => {
   return (
     <div className="flex">
       <div className="hidden w-60 font-slab lg:block lg:border-r-2">
@@ -23,5 +23,3 @@ const ProfileLayout = ({ children }: ProfileLayoutProps) => {
     </div>
   )
 }
-
-export { ProfileLayout }

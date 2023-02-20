@@ -13,14 +13,15 @@ import { Link, routes } from '@redwoodjs/router'
 export interface IInputProps {
   type?: string
   inputProps?: Partial<InputFieldProps>
-  labelProps?: LabelProps
+  labelProps?: Omit<LabelProps, 'name'>
   wrapperProps?: HTMLProps<HTMLDivElement>
-  name: string
+  name?: string
   label?: string
   value?: string
   required?: boolean
   tabIndex?: number
   placeholder?: string
+  focus?: boolean
   className?: string
 }
 
@@ -31,45 +32,56 @@ const ERROR_CLASSES = 'border border-red-500'
 
 const MAX_INPUT_WIDTH = 'max-w-[1000px]'
 
-const DefaultLabel = (props: IInputProps) => (
-  <Label
-    name={props.label}
-    htmlFor={props.name}
-    className="font-slab text-base font-bold uppercase"
-    {...props.labelProps}
-  />
-)
+const DefaultLabel = (props: IInputProps) => {
+  const { label, name, labelProps } = props
+  return label ? (
+    <Label
+      name={label}
+      htmlFor={name}
+      className="font-slab text-base font-bold uppercase"
+      {...labelProps}
+    />
+  ) : (
+    <></>
+  )
+}
 
-export const TextInput = (props: IInputProps) => (
-  <div className={`mb-7 mr-2 md:mb-0 ${props.className}`}>
-    {props.label && <DefaultLabel {...props} />}
-    <div className={`${MAX_INPUT_WIDTH} bg-white`}>
-      <InputField
-        className={INPUT_CLASSES}
-        errorClassName={ERROR_CLASSES}
-        name={props.name}
-        value={props.value}
-        validation={{
-          required: {
-            value: props.required,
-            message: `${props.label} is required!`,
-          },
-        }}
-        placeholder={props.placeholder || ''}
-        tabIndex={props.tabIndex}
-        {...props.inputProps}
-      />
+export const TextInput = (props: IInputProps) => {
+  const ref = props.focus
+    ? { ref: (input: HTMLInputElement) => input?.focus() }
+    : {}
+  return (
+    <div className={`mb-7 mr-2 md:mb-0 ${props.className}`}>
+      <DefaultLabel {...props} />
+      <div className={`${MAX_INPUT_WIDTH} bg-white`}>
+        <InputField
+          {...ref}
+          className={INPUT_CLASSES.concat(` ${props.className || ''}`)}
+          errorClassName={ERROR_CLASSES}
+          name={props.name}
+          value={props.value}
+          validation={{
+            required: {
+              value: props.required,
+              message: `${props.label} is required!`,
+            },
+          }}
+          placeholder={props.placeholder || ''}
+          tabIndex={props.tabIndex}
+          {...props.inputProps}
+        />
+      </div>
+      <FieldError name={props.name} className={ERROR_CLASSES} />
     </div>
-    <FieldError name={props.name} className={ERROR_CLASSES} />
-  </div>
-)
+  )
+}
 
 export const PasswordInput = (props: IInputProps) => (
   <div className={`mb-7 mr-2 md:mb-0 ${props.className}`}>
     {props.label && <DefaultLabel {...props} />}
     <div className={`${MAX_INPUT_WIDTH} bg-white`}>
       <PasswordField
-        className={INPUT_CLASSES}
+        className={INPUT_CLASSES.concat(` ${props.className || ''}`)}
         errorClassName={ERROR_CLASSES}
         name={props.name}
         validation={{
@@ -101,7 +113,7 @@ export const ForgotPasswordInput = (props: IInputProps) => {
       </div>
       <div className={`${MAX_INPUT_WIDTH} bg-white`}>
         <PasswordField
-          className={INPUT_CLASSES}
+          className={INPUT_CLASSES.concat(` ${props.className || ''}`)}
           errorClassName={ERROR_CLASSES}
           name={props.name}
           validation={{

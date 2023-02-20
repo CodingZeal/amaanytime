@@ -8,7 +8,7 @@ import {
 import { useDevice } from 'src/hooks/useDevice'
 
 const DESKTOP_ABSOLUTE_STYLE: React.CSSProperties = {
-  position: 'absolute',
+  position: 'fixed',
   top: 50,
   left: 50,
   width: '100%',
@@ -16,7 +16,7 @@ const DESKTOP_ABSOLUTE_STYLE: React.CSSProperties = {
   zIndex: -3,
 }
 
-export const LoginBackgrounds = () => {
+export const AuthBackgrounds = () => {
   const { isMobile, isIPad } = useDevice()
 
   if (isMobile) {
@@ -31,8 +31,8 @@ export const LoginBackgrounds = () => {
     return (
       <IPadBackgroundSvg
         style={{
-          position: 'absolute',
-          top: -30,
+          position: 'fixed',
+          top: -40,
           left: 0,
           width: '100%',
           zIndex: -1,

@@ -1,23 +1,21 @@
 // template[tags(pages,routes)]
 import { Set, Router, Route, Private } from '@redwoodjs/router'
 
-import { AdminLayout } from './layouts/Admin/AdminLayout'
-import { RolesLayout } from './layouts/Admin/RolesLayout'
-import { TeamsLayout } from './layouts/Admin/TeamsLayout'
-import { UsersLayout } from './layouts/Admin/UsersLayout'
-import { MainLayout } from './layouts/MainLayout'
-import { ProfileLayout } from './layouts/ProfileLayout'
+import { LoadingOverlay } from './components/LoadingOverlay'
+import { AdminLayout, RolesLayout, TeamsLayout, UsersLayout, MainLayout, ProfileLayout } from './layouts'
 
 const Routes = () => {
   return (
     <Router>
-      <Route path="/login" page={LoginPage} name="login" />
-      <Route path="/signup" page={SignupPage} name="signup" />
-      <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
-      <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
-      <Route path="/create-password" page={CreatePasswordPage} name="createPassword" />
-      <Route path="/verification" page={VerificationPage} name="verification" />
-      <Route path="/verification-reset" page={VerificationResetPage} name="verificationReset" />
+      <Set whileLoadingPage={LoadingOverlay} whileLoadingAuth={LoadingOverlay}>
+        <Route path="/login" page={LoginPage} name="login" prerender />
+        <Route path="/signup" page={SignupPage} name="signup" prerender />
+        <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" prerender />
+        <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" prerender />
+        <Route path="/create-password" page={CreatePasswordPage} name="createPassword" prerender />
+        <Route path="/verification" page={VerificationPage} name="verification" />
+        <Route path="/verification-reset" page={VerificationResetPage} name="verificationReset" />
+      </Set>
       <Set wrap={MainLayout}>
         <Route path="/waiting-list" page={WaitingListPage} name="waitingList" />
         <Route path="/about" page={AboutPage} name="about" />
