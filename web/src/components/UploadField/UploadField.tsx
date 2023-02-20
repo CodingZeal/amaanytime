@@ -1,10 +1,12 @@
 import { useCallback, useState } from 'react'
 
 import { useDropzone } from 'react-dropzone'
+import { CameraIcon } from 'web/public/CameraIcon'
+import { CloseIcon } from 'web/public/CloseIcon'
 
-import { HiddenField } from '@redwoodjs/forms'
+import { Cover } from '../Avatar/Cover/Cover'
 
-const UploadField = ({ name, value }): JSX.Element => {
+const UploadField = ({ user, value }) => {
   const onDrop = useCallback(async (acceptedFiles) => {
     const url = new URL('https://www.filestackapi.com/api/store/S3')
     url.search = new URLSearchParams({
@@ -22,17 +24,13 @@ const UploadField = ({ name, value }): JSX.Element => {
     }
   }, [])
   const [uploadedFile, setUploadedFile] = useState<string>(value)
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+  const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
   return (
-    <div {...getRootProps()}>
-      <HiddenField name={name} value={uploadedFile} />
-      <input {...getInputProps()} />
-      {isDragActive ? (
-        <p>Drop the files here ...</p>
-      ) : (
-        <p>Drag and drop some files here, or click to select files</p>
-      )}
+    <div className="absolute -mt-[360px] object-center md:-mt-96 lg:ml-0">
+      <Cover user={user} />
+      <CameraIcon className="relative left-[35%] -mt-44 md:left-[40%]" />
+      <CloseIcon className="relative left-[55%] -mt-20 md:left-[60%]" />
     </div>
   )
 }

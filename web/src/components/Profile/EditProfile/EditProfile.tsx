@@ -1,12 +1,13 @@
 import { CameraIcon } from 'web/public/CameraIcon'
-import { CloseIcon } from 'web/public/CloseIcon'
+// import { CloseIcon } from 'web/public/CloseIcon'
 
 import { Form } from '@redwoodjs/forms'
 
 import { Avatar } from 'src/components/Avatar/Avatar'
+// import { Cover } from 'src/components/Avatar/Cover/Cover'
 import { ActionButton } from 'src/components/Forms/ActionButton'
 import { TextInput } from 'src/components/Forms/TextInputs'
-import { displayName, nameColor } from 'src/utils/UserHelpers'
+import { UploadField } from 'src/components/UploadField/UploadField'
 
 const EditProfile = ({ profile, onSave }) => {
   return (
@@ -14,30 +15,10 @@ const EditProfile = ({ profile, onSave }) => {
       id="edit-profile"
       className="mx-auto w-full px-6 md:px-10 lg:mx-10 lg:w-1/2 lg:px-4"
     >
-      <div className="absolute -mt-[360px] object-center md:-mt-96 lg:ml-0">
-        {profile.cover ? (
-          <img
-            className="relative z-cover h-[295px] w-[96rem] object-cover object-center"
-            src={profile.cover}
-            alt="cover"
-            data-testid="cover"
-          />
-        ) : (
-          <svg
-            viewBox="0 0 1280 295"
-            width="auto"
-            height="295px"
-            fill={nameColor(displayName(profile))}
-            opacity="70%"
-            preserveAspectRatio="none"
-          >
-            <title>Cover</title>
-            <rect width="100%" height="100%" />
-          </svg>
-        )}
-        <CameraIcon className="relative left-[35%] -mt-44 md:left-[40%]" />
-        <CloseIcon className="relative left-[55%] -mt-20 md:left-[60%]" />
-      </div>
+      <UploadField
+        user={profile}
+        value="https://i.picsum.photos/id/237/750/295.jpg?hmac=G-dedeDLqcYUvDe-WUKTnnGIhDo6Kz5rzRwp-y6wgd4"
+      />
       <div className="mt-[360px] md:mt-96">
         <div className="absolute -mt-8 md:-mx-2 md:-mt-20">
           <Avatar
