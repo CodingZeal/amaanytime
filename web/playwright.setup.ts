@@ -15,24 +15,22 @@ async function globalSetup() {
   await passwordInput.click()
   await passwordInput.fill('password')
 
-  await adminLogin.getByRole('button', { name: 'Login' }).click()
-  await adminLogin.waitForURL(BASE_URL, { waitUntil: 'domcontentloaded' })
-  await adminLogin.getByRole('button', { name: 'Log in' }).click()
+  await adminLogin.getByRole('button', { name: 'Log In' }).click()
   await adminLogin.waitForURL(BASE_URL, { waitUntil: 'domcontentloaded' })
 
   await adminLogin
     .context()
     .storageState({ path: 'web/tests/storage/adminUser-pw.json' })
 
-  const userLogin = await browser.newPage()
+  const userContext = await browser.newContext()
+
+  const userLogin = await userContext.newPage()
   await userLogin.goto(`${BASE_URL}/login`)
 
-  await userLogin.locator('input[name="username"]').click()
-  await userLogin.locator('input[name="username"]').fill('user')
-  await userLogin.locator('input[name="password"]').click()
-  await userLogin.locator('input[name="password"]').fill('password')
-  await userLogin.getByRole('button', { name: 'Login' }).click()
-  await userLogin.waitForURL(BASE_URL, { waitUntil: 'domcontentloaded' })
+  await userLogin.waitForURL(`${BASE_URL}/login`, {
+    waitUntil: 'domcontentloaded',
+  })
+
   const usersUserInput = userLogin.getByRole('textbox', { name: 'Username' })
   await usersUserInput.click()
   await usersUserInput.fill('user')
@@ -43,7 +41,7 @@ async function globalSetup() {
   await usersPasswordInput.click()
   await usersPasswordInput.fill('password')
 
-  await userLogin.getByRole('button', { name: 'Log in' }).click()
+  await userLogin.getByRole('button', { name: 'Log In' }).click()
   await userLogin.waitForURL(BASE_URL, { waitUntil: 'domcontentloaded' })
 
   await userLogin

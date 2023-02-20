@@ -1,1 +1,7 @@
-export { LoginLayout } from './Login/LoginLayout'
+export { MainLayout } from './MainLayout'
+export { AuthLayout } from './Auth/AuthLayout'
+export { ProfileLayout } from './ProfileLayout/ProfileLayout'
+export { AdminLayout } from './Admin/AdminLayout/AdminLayout'
+export { RolesLayout } from './Admin/RolesLayout/RolesLayout'
+export { UsersLayout } from './Admin/UsersLayout/UsersLayout'
+export { TeamsLayout } from './Admin/TeamsLayout/TeamsLayout'
