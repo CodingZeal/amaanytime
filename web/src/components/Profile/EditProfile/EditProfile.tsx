@@ -1,10 +1,8 @@
 import { CameraIcon } from 'web/public/CameraIcon'
-// import { CloseIcon } from 'web/public/CloseIcon'
 
 import { Form } from '@redwoodjs/forms'
 
 import { Avatar } from 'src/components/Avatar/Avatar'
-// import { Cover } from 'src/components/Avatar/Cover/Cover'
 import { ActionButton } from 'src/components/Forms/ActionButton'
 import { TextInput } from 'src/components/Forms/TextInputs'
 import { UploadField } from 'src/components/UploadField/UploadField'
@@ -15,10 +13,7 @@ const EditProfile = ({ profile, onSave }) => {
       id="edit-profile"
       className="mx-auto w-full px-6 md:px-10 lg:mx-10 lg:w-1/2 lg:px-4"
     >
-      <UploadField
-        user={profile}
-        value="https://i.picsum.photos/id/237/750/295.jpg?hmac=G-dedeDLqcYUvDe-WUKTnnGIhDo6Kz5rzRwp-y6wgd4"
-      />
+      <UploadField name="cover" user={profile} type="cover" />
       <div className="mt-[360px] md:mt-96">
         <div className="absolute -mt-8 md:-mx-2 md:-mt-20">
           <Avatar
@@ -36,37 +31,37 @@ const EditProfile = ({ profile, onSave }) => {
               name="name"
               label="name"
               value={profile.name}
-              className="mb-4"
+              // className="mb-4"
             />
             <TextInput
               name="username"
               label="username"
               value={profile.username}
-              className="mb-4"
+              // className="mb-4"
             />
             <TextInput
               name="pronouns"
               label="pronouns"
               value={profile.pronouns}
-              className="mb-4"
+              // className="mb-4"
             />
             <TextInput
               name="bio"
               label="bio"
               value={profile.bio}
-              className="mb-4"
+              // className="mb-4"
             />
             <TextInput
               name="location"
               label="location"
               value={profile.location}
-              className="mb-4"
+              // className="mb-4"
             />
             <TextInput
               name="website"
               label="website"
               value={profile.website}
-              className="mb-4"
+              // className="mb-4"
             />
 
             <div className="flex justify-end">

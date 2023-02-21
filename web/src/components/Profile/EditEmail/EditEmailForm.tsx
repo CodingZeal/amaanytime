@@ -14,28 +14,23 @@ const EditEmailForm = ({ error, loading, onSave }) => {
   return (
     <div className=" w-full px-5 md:px-10 lg:pr-[122px] lg:pl-[58px]">
       <h2 className="font-condensed text-5xl text-punch">Edit Email</h2>
-      <Form error={error} onSubmit={onSave} formMethods={formMethods}>
+      <Form
+        error={error}
+        onSubmit={onSave}
+        formMethods={formMethods}
+        className="my-10"
+      >
         <FormError
           error={error}
           wrapperClassName="rw-form-error-wrapper"
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-        <PasswordInput
-          name="password"
-          label="Your Password"
-          className="my-10"
-          required
-        />
-        <h2 className="mt-10 -mb-10">
-          Requires verification via email message
-        </h2>
-        <TextInput
-          name="newEmail"
-          label="Your New Email"
-          className="my-10"
-          required
-        />
+        <PasswordInput name="password" label="Your Password" required />
+        <div className="my-10">
+          <h2>Requires verification via email message</h2>
+          <TextInput name="newEmail" label="Your New Email" required />
+        </div>
         <div className="flex max-w-[1000px] justify-end">
           <ActionButton
             loading={loading}

@@ -7,18 +7,15 @@ import { useFormContext, useRegister } from '@redwoodjs/forms'
 import { UploadCover } from './UploadCover'
 
 export interface UploadFieldI {
-  label?: string
-  name: string
-  type?: 'avatar' | 'image'
-  value?: string
+  name?: string
+  user: {
+    avatar?: string
+    cover?: string
+  }
+  type?: 'cover'
 }
 
-const UploadField = ({
-  label,
-  name,
-  type,
-  value,
-}: UploadFieldI): JSX.Element => {
+const UploadField = ({ user, type }: UploadFieldI): JSX.Element => {
   const onDrop = async (file: File[]) => {
     const url = new URL('https://www.filestackapi.com/api/store/S3')
     url.search = new URLSearchParams({
@@ -31,7 +28,7 @@ const UploadField = ({
       })
       const result = await response.json()
       setValue(name, result.url)
-      setCurrentValue(result.url)
+      // setCurrentValue(result.url)
     } catch (e) {
       console.error(e)
     }
@@ -41,28 +38,28 @@ const UploadField = ({
     setCurrentValue('')
   }
 
-  const [currentValue, setCurrentValue] = useState<string>(value)
-  const registerReturn = useRegister({ name })
-  const { setValue } = useFormContext()
+  const [currentValue, setCurrentValue] = useState<string>()
+  // const registerReturn = useRegister({ name })
+  // const { setValue } = useFormContext()
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop })
-  const fileInputName = `${name}-uploadField`
+  // const { getRootProps, getInputProps } = useDropzone({ onDrop })
+  // const fileInputName = `${name}-uploadField`
 
   const UPLOAD_FIELD_MAP = () => {
     const defaultProps = {
-      clearValue,
-      currentValue,
-      fileInputName,
-      getInputProps,
-      getRootProps,
-      label,
-      name,
-      registerReturn,
+      // clearValue,
+      // currentValue,
+      // fileInputName,
+      // getInputProps,
+      // getRootProps,
+      // name,
+      // registerReturn,
+      user,
     }
 
     return {
       default: <UploadCover {...defaultProps} />,
-      image: <UploadCover {...defaultProps} />,
+      cover: <UploadCover {...defaultProps} />,
     }
   }
 

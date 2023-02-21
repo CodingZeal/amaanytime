@@ -13,7 +13,12 @@ const EditPasswordForm = ({ error, loading, onSave }) => {
   return (
     <div className="mx-auto w-full px-5 md:px-10 lg:pr-[122px] lg:pl-[58px]">
       <h2 className="font-condensed text-5xl text-punch">Edit Password</h2>
-      <Form onSubmit={onSave} error={error} formMethods={formMethods}>
+      <Form
+        onSubmit={onSave}
+        error={error}
+        formMethods={formMethods}
+        className="my-10"
+      >
         <FormError
           error={error}
           wrapperClassName="rw-form-error-wrapper"
@@ -23,19 +28,14 @@ const EditPasswordForm = ({ error, loading, onSave }) => {
         <PasswordInput
           name="existingPassword"
           label="Your Existing Password"
-          className="my-10"
           required
         />
-        <PasswordInput
-          name="newPassword"
-          label="New Password"
-          className="my-10"
-          required
-        />
+        <div className="my-10">
+          <PasswordInput name="newPassword" label="New Password" required />
+        </div>
         <PasswordInput
           name="confirmPassword"
           label="Confirm New Password"
-          className="my-10"
           required
         />
         <div className="flex max-w-[1000px] justify-end">
