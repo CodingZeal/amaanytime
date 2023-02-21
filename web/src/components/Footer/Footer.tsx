@@ -7,7 +7,6 @@ import { CopyrightInfo } from './CopyrightBar'
 export const Footer = () => (
   <div
     style={{
-      position: 'fixed',
       bottom: 10,
       left: 0,
       right: 0,

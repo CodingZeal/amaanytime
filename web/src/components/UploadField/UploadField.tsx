@@ -9,7 +9,6 @@ import { UploadCover } from './UploadCover'
 export interface UploadFieldI {
   name?: string
   user: {
-    avatar?: string
     cover?: string
   }
   type?: 'cover'
@@ -27,7 +26,7 @@ const UploadField = ({ user, type }: UploadFieldI): JSX.Element => {
         body: file[0],
       })
       const result = await response.json()
-      setValue(name, result.url)
+      setValue(user.cover, result.url)
       // setCurrentValue(result.url)
     } catch (e) {
       console.error(e)
@@ -35,23 +34,23 @@ const UploadField = ({ user, type }: UploadFieldI): JSX.Element => {
   }
 
   const clearValue = () => {
-    setCurrentValue('')
+    setCurrentValue(null)
   }
 
-  const [currentValue, setCurrentValue] = useState<string>()
+  const [currentValue, setCurrentValue] = useState<string>(user.cover)
   // const registerReturn = useRegister({ name })
   // const { setValue } = useFormContext()
 
-  // const { getRootProps, getInputProps } = useDropzone({ onDrop })
-  // const fileInputName = `${name}-uploadField`
+  const { getRootProps, getInputProps } = useDropzone({ onDrop })
+  const fileInputName = `${type}-uploadField`
 
   const UPLOAD_FIELD_MAP = () => {
     const defaultProps = {
-      // clearValue,
+      clearValue,
       // currentValue,
-      // fileInputName,
-      // getInputProps,
-      // getRootProps,
+      fileInputName,
+      getInputProps,
+      getRootProps,
       // name,
       // registerReturn,
       user,

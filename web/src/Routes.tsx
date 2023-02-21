@@ -2,7 +2,7 @@
 import { Set, Router, Route, Private } from '@redwoodjs/router'
 
 import { LoadingOverlay } from './components/LoadingOverlay'
-import { AdminLayout, RolesLayout, TeamsLayout, UsersLayout, MainLayout, ProfileLayout } from './layouts'
+import { AdminLayout, RolesLayout, TeamsLayout, UsersLayout, MainLayout } from './layouts'
 
 const Routes = () => {
   return (
@@ -34,11 +34,9 @@ const Routes = () => {
         <Private unauthenticated="forbidden">
           <Route path="/" page={FeedPage} name="home" />
           <Route path="/user-profile/{id}" page={UserProfilePage} name="userProfile" />
-          <Set wrap={ProfileLayout}>
-            <Route path="/profile" page={ProfileEditProfilePage} name="profile" />
-            <Route path="/profile/edit_password" page={ProfileEditPasswordPage} name="editPassword" />
-            <Route path="/profile/edit_email" page={ProfileEditEmailPage} name="editEmail" />
-          </Set>
+          <Route path="/profile" page={ProfileEditProfilePage} name="profile" />
+          <Route path="/profile/edit_password" page={ProfileEditPasswordPage} name="editPassword" />
+          <Route path="/profile/edit_email" page={ProfileEditEmailPage} name="editEmail" />
         </Private>
         <Private roles="super admin" unauthenticated="forbidden">
           <Set wrap={AdminLayout}>
