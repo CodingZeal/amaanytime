@@ -12,9 +12,15 @@ export interface UploadFieldI {
     cover?: string
   }
   type?: 'cover'
+  value?: string
 }
 
-const UploadField = ({ user, type }: UploadFieldI): JSX.Element => {
+const UploadField = ({
+  name,
+  type,
+  user,
+  value,
+}: UploadFieldI): JSX.Element => {
   const onDrop = async (file: File[]) => {
     const url = new URL('https://www.filestackapi.com/api/store/S3')
     url.search = new URLSearchParams({
@@ -26,33 +32,33 @@ const UploadField = ({ user, type }: UploadFieldI): JSX.Element => {
         body: file[0],
       })
       const result = await response.json()
-      setValue(user.cover, result.url)
-      // setCurrentValue(result.url)
+      setValue(name, result.url)
+      setCurrentValue(result.url)
     } catch (e) {
       console.error(e)
     }
   }
 
   const clearValue = () => {
-    setCurrentValue(null)
+    setCurrentValue('')
   }
 
-  const [currentValue, setCurrentValue] = useState<string>(user.cover)
-  // const registerReturn = useRegister({ name })
-  // const { setValue } = useFormContext()
+  const [currentValue, setCurrentValue] = useState<string>(value)
+  const registerReturn = useRegister({ name })
+  const { setValue } = useFormContext()
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop })
-  const fileInputName = `${type}-uploadField`
+  const fileInputName = `${name}-uploadField`
 
   const UPLOAD_FIELD_MAP = () => {
     const defaultProps = {
       clearValue,
-      // currentValue,
+      currentValue,
       fileInputName,
       getInputProps,
       getRootProps,
-      // name,
-      // registerReturn,
+      name,
+      registerReturn,
       user,
     }
 

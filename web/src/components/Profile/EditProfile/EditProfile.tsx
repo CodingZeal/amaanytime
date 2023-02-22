@@ -10,20 +10,21 @@ import { UploadField } from 'src/components/UploadField/UploadField'
 const EditProfile = ({ profile, onSave }) => {
   return (
     <div id="edit-profile" className="w-screenlg:w-1/2 mx-auto ">
-      <UploadField name="cover" user={profile} type="cover" />
+      <Form onSubmit={onSave}>
+        <UploadField name="cover" user={profile} type="cover" />
+        <div className="mx-4 justify-start md:mx-10 ">
+          <div className="-ml-4">
+            <Avatar
+              user={profile}
+              className="h-[120px] w-[120px] md:h-[160px] md:w-[160px]"
+            />
+            <CameraIcon className="ml-[20px] -mt-[95px] md:-mt-28 md:ml-8 md:h-[90px] md:w-[90px]" />
+          </div>
 
-      <div className="mx-4 justify-start md:mx-10 ">
-        <div className="-ml-4">
-          <Avatar
-            user={profile}
-            className="h-[120px] w-[120px] md:h-[160px] md:w-[160px]"
-          />
-          <CameraIcon className="ml-[20px] -mt-[90px] md:-mt-28 md:ml-8 md:h-[90px] md:w-[90px]" />
-        </div>
+          <h2 className="my-4 font-condensed text-5xl text-punch">
+            My Profile
+          </h2>
 
-        <h2 className="my-2 font-condensed text-5xl text-punch">My Profile</h2>
-
-        <Form onSubmit={onSave}>
           <TextInput name="name" label="name" value={profile.name} />
           <TextInput
             name="username"
@@ -54,8 +55,8 @@ const EditProfile = ({ profile, onSave }) => {
               UPDATE PROFILE
             </ActionButton>
           </div>
-        </Form>
-      </div>
+        </div>
+      </Form>
     </div>
   )
 }

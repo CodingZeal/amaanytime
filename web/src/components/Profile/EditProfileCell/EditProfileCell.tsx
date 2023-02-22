@@ -22,6 +22,7 @@ export const QUERY = gql`
       name
       nickname
       pronouns
+      avatar
       bio
       cover
       location
@@ -38,6 +39,7 @@ const UPDATE_PROFILE_MUTATION = gql`
       name
       nickname
       pronouns
+      avatar
       bio
       cover
       location

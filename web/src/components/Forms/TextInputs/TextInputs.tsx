@@ -51,7 +51,7 @@ export const TextInput = (props: IInputProps) => {
     ? { ref: (input: HTMLInputElement) => input?.focus() }
     : {}
   return (
-    <div className={`mb-7 mr-2 md:mb-0 ${props.className}`}>
+    <div className={`my-4 mb-7 mr-2 md:mb-0 ${props.className}`}>
       <DefaultLabel {...props} />
       <div className={`${MAX_INPUT_WIDTH} bg-white`}>
         <InputField

@@ -5,7 +5,13 @@ import { UploadField } from './UploadField'
 describe('UploadField', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<UploadField name={undefined} value={undefined} />)
+      render(
+        <UploadField
+          user={{
+            cover: '',
+          }}
+        />
+      )
     }).not.toThrow()
   })
 })
