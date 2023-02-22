@@ -6,7 +6,7 @@ import { Cover } from '../Avatar/Cover/Cover'
 const UserProfile = ({ user }) => {
   return (
     <div className="flex h-auto w-screen flex-col bg-bg">
-      <Cover name={user.name} src={user.cover} />
+      <Cover user={user} />
       <div className="mx-5 -mt-20">
         <Avatar user={user} className="relative h-[120px] w-[120px]" />
         <div className="-mt-4 font-slab text-base font-medium">

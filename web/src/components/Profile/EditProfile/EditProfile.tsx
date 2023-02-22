@@ -1,19 +1,25 @@
 import { CameraIcon } from 'web/public/CameraIcon'
 
-import { Form } from '@redwoodjs/forms'
+import { Form, FormError } from '@redwoodjs/forms'
 
 import { Avatar } from 'src/components/Avatar/Avatar'
 import { ActionButton } from 'src/components/Forms/ActionButton'
 import { TextInput } from 'src/components/Forms/TextInputs'
 import { UploadField } from 'src/components/UploadField/UploadField'
 
-const EditProfile = ({ profile, onSave }) => {
+const EditProfile = ({ error, loading, profile, onSave }) => {
   return (
     <div id="edit-profile" className="w-screenlg:w-1/2 mx-auto ">
       <Form onSubmit={onSave}>
+        <FormError
+          error={error}
+          wrapperClassName="rw-form-error-wrapper"
+          titleClassName="rw-form-error-title"
+          listClassName="rw-form-error-list"
+        />
         <UploadField name="cover" user={profile} type="cover" />
         <div className="mx-4 justify-start md:mx-10 ">
-          <div className="-ml-4">
+          <div className="relative -ml-4">
             <Avatar
               user={profile}
               className="h-[120px] w-[120px] md:h-[160px] md:w-[160px]"
@@ -46,6 +52,7 @@ const EditProfile = ({ profile, onSave }) => {
 
           <div className="flex max-w-[1000px] justify-end">
             <ActionButton
+              loading={loading}
               type="submit"
               style={{
                 marginTop: 20,

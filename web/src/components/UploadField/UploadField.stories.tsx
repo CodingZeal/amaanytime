@@ -3,7 +3,13 @@ import type { ComponentMeta } from '@storybook/react'
 import { UploadField } from './UploadField'
 
 export const generated = () => {
-  return <UploadField name={undefined} value={undefined} />
+  return (
+    <UploadField
+      user={{
+        cover: '',
+      }}
+    />
+  )
 }
 
 export default {

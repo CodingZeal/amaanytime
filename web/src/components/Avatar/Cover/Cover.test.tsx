@@ -6,18 +6,42 @@ import { Cover as data, CoverNoImage } from './Cover.mocks'
 describe('Cover', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<Cover {...data} />)
+      render(
+        <Cover
+          user={{
+            cover: '',
+          }}
+          {...data}
+        />
+      )
     }).not.toThrow()
   })
 
   it('Displays the correct image and title', () => {
-    render(<Cover {...data} />)
-    expect(screen.getByAltText(data.name)).toHaveAttribute('src', data.src)
-    expect(screen.getByAltText(data.name)).toBeInTheDocument()
+    render(
+      <Cover
+        user={{
+          cover: '',
+        }}
+        {...data}
+      />
+    )
+    expect(screen.getByAltText(data.user.name)).toHaveAttribute(
+      'src',
+      data.user.cover
+    )
+    expect(screen.getByAltText(data.user.name)).toBeInTheDocument()
   })
 
   it('creates a cover when no cover is provided', () => {
-    render(<Cover {...CoverNoImage} />)
+    render(
+      <Cover
+        user={{
+          cover: '',
+        }}
+        {...CoverNoImage}
+      />
+    )
     expect(screen.getByTestId('cover')).toBeVisible()
   })
 })

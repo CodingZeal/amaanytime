@@ -58,17 +58,20 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({ profile }: CellSuccessProps) => {
   const { reauthenticate } = useAuth()
 
-  const [updateProfile] = useMutation(UPDATE_PROFILE_MUTATION, {
-    onCompleted: () => {
-      reauthenticate()
-      toast.success('Profile updated')
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
-    refetchQueries: [{ query: QUERY }],
-    awaitRefetchQueries: true,
-  })
+  const [updateProfile, { error, loading }] = useMutation(
+    UPDATE_PROFILE_MUTATION,
+    {
+      onCompleted: () => {
+        reauthenticate()
+        toast.success('Profile updated')
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+      refetchQueries: [{ query: QUERY }],
+      awaitRefetchQueries: true,
+    }
+  )
   const onSave = (input) => {
     updateProfile({ variables: { input } })
   }
@@ -77,7 +80,12 @@ export const Success = ({ profile }: CellSuccessProps) => {
     <>
       <MetaTags title={displayName(profile)} />
       <div>
-        <EditProfile onSave={onSave} profile={profile} />
+        <EditProfile
+          onSave={onSave}
+          profile={profile}
+          error={error}
+          loading={loading}
+        />
       </div>
     </>
   )

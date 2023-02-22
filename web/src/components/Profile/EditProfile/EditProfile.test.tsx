@@ -31,7 +31,7 @@ describe('EditProfile', () => {
 
     expect(mockSave.mock.calls.length).toBe(0)
 
-    const save = screen.getByRole('button')
+    const save = screen.getByRole('button', { name: 'UPDATE PROFILE' })
     await waitFor(() => userEvent.click(save))
 
     expect(mockSave.mock.calls.length).toBe(1)
