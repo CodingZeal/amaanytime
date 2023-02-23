@@ -39,7 +39,7 @@ const UploadField = ({
   }
 
   const clearValue = () => {
-    setCurrentValue(null)
+    setCurrentValue('')
   }
 
   const [currentValue, setCurrentValue] = useState<string>(value)
@@ -60,7 +60,6 @@ const UploadField = ({
       registerReturn,
       user,
     }
-    console.log(user.cover)
 
     return {
       default: <UploadCover {...defaultProps} />,

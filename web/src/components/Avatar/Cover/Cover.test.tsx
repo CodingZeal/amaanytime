@@ -9,7 +9,7 @@ describe('Cover', () => {
       render(
         <Cover
           user={{
-            cover: '',
+            name: '',
           }}
           {...data}
         />
@@ -21,15 +21,12 @@ describe('Cover', () => {
     render(
       <Cover
         user={{
-          cover: '',
+          name: '',
         }}
         {...data}
       />
     )
-    expect(screen.getByAltText(data.user.name)).toHaveAttribute(
-      'src',
-      data.user.cover
-    )
+    expect(screen.getByAltText(data.user.name)).toHaveAttribute('src', data.src)
     expect(screen.getByAltText(data.user.name)).toBeInTheDocument()
   })
 
@@ -37,7 +34,7 @@ describe('Cover', () => {
     render(
       <Cover
         user={{
-          cover: '',
+          name: '',
         }}
         {...CoverNoImage}
       />

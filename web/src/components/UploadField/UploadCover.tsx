@@ -13,12 +13,24 @@ const UploadCover = ({
   name,
   user,
 }) => {
+  console.log(currentValue)
   return (
-    <div className="w-screen object-center">
+    <div className="w-screen object-center" {...getRootProps()}>
       <input name={name} type="hidden" {...registerReturn} />
+      {currentValue && (
+        <div>
+          <Cover user={user} src={currentValue} />
+          <button
+            className="mx-auto -mt-44 flex w-1/2 items-start justify-evenly"
+            onClick={clearValue}
+          >
+            <CloseIcon />
+          </button>
+        </div>
+      )}
       {!currentValue && (
-        <div {...getRootProps()}>
-          <Cover className="" user={user} />
+        <div>
+          <Cover user={user} src={currentValue} />
           <div className="mx-auto -mt-44 flex w-1/2 items-start justify-evenly">
             <label
               htmlFor={fileInputName}
@@ -33,16 +45,8 @@ const UploadCover = ({
                 {...getInputProps()}
               />
             </label>
-            <button onClick={clearValue}>
-              <CloseIcon />
-            </button>
           </div>
         </div>
-      )}
-      {currentValue && (
-        <button onClick={clearValue}>
-          <CloseIcon />
-        </button>
       )}
     </div>
   )

@@ -17,7 +17,12 @@ const EditProfile = ({ error, loading, profile, onSave }) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-        <UploadField name="cover" user={profile} type="cover" />
+        <UploadField
+          name="cover"
+          user={profile}
+          type="cover"
+          value={profile.cover}
+        />
         <div className="mx-4 justify-start md:mx-10 ">
           <div className="relative -ml-4">
             <Avatar

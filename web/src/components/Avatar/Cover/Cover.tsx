@@ -1,19 +1,20 @@
 import { displayName, nameColor } from 'src/utils/UserHelpers'
 
 export interface ICover {
-  user: {
-    cover?: string
+  user?: {
+    name?: string
   }
   className?: string
+  src?: string
 }
 
-const Cover = ({ user, className = '' }: ICover): JSX.Element => {
+const Cover = ({ user, src, className = '' }: ICover): JSX.Element => {
   return (
     <div>
-      {user?.cover ? (
+      {src ? (
         <img
           className={`h-[295px] w-screen object-cover object-center ${className}`}
-          src={user.cover}
+          src={src}
           alt={displayName(user)}
         />
       ) : (
