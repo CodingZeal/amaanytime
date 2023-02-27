@@ -9,8 +9,8 @@ import { UploadField } from 'src/components/UploadField/UploadField'
 
 const EditProfile = ({ error, loading, profile, onSave }) => {
   return (
-    <div id="edit-profile" className="w-screenlg:w-1/2 mx-auto ">
-      <Form onSubmit={onSave}>
+    <div id="edit-profile" className="mx-auto w-screen lg:w-1/2 ">
+      <Form onSubmit={onSave} error={error}>
         <FormError
           error={error}
           wrapperClassName="rw-form-error-wrapper"
