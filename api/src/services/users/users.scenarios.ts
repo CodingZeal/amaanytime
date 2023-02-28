@@ -74,6 +74,16 @@ export const associations = {
       },
     }),
   },
+  question: {
+    question1: (scenario): Prisma.QuestionCreateArgs => ({
+      data: {
+        question: 'String',
+        answer: 'Example Answer',
+        askedByUserId: scenario.user.withTeam.id,
+        answeredByUserId: scenario.user.withoutTeam.id,
+      },
+    }),
+  },
 }
 
 export type StandardScenario = typeof standard
@@ -81,4 +91,5 @@ export type AssociationsScenario = {
   role: Record<string, Prisma.RoleCreateArgs['data']>
   team: Record<string, Prisma.TeamCreateArgs['data']>
   user: Record<string, Prisma.UserCreateArgs['data']>
+  question: Record<string, Prisma.QuestionCreateArgs['data']>
 }

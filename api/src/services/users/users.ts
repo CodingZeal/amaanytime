@@ -122,6 +122,16 @@ export const verifyReset: MutationResolvers['verifyReset'] = async ({
 export const User: UserResolvers = {
   memberships: (_obj, { root }) =>
     db.membership.findMany({ where: { userId: root.id } }),
+
+  questionsAsked: (_obj, { root }) => {
+    return db.question.findMany({ where: { askedByUserId: root.id } })
+  },
+  questionsAnswered: (_obj, { root }) => {
+    return db.question.findMany({
+      where: { answeredByUserId: root.id },
+      orderBy: { updatedOn: 'desc' },
+    })
+  },
 }
 
 const createMembershipAndRolesIfNotExists = async (

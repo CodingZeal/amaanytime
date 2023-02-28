@@ -1,8 +1,12 @@
+import { useState } from 'react'
+
 import type { FindUserById } from 'types/graphql'
 
 import { CellFailureProps, CellSuccessProps, MetaTags } from '@redwoodjs/web'
 
 import { UserProfile } from 'src/components/UserProfile/UserProfile'
+
+import { AnsweredQuestions } from '../AnsweredQuestions/AnsweredQuestions'
 
 export const QUERY = gql`
   query FindUserById($id: String!) {
@@ -20,9 +24,18 @@ export const QUERY = gql`
       website
       questionsAsked {
         question
+        askedOn
       }
       questionsAnswered {
+        id
         question
+        answer
+        updatedOn
+        askedBy {
+          username
+          name
+          avatar
+        }
       }
     }
   }
@@ -37,10 +50,16 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ user }: CellSuccessProps<FindUserById>) => {
+  const [answeredQuestion, setAnsweredQuestion] = useState([])
+
+  useState(() => {
+    setAnsweredQuestion(user.questionsAnswered)
+  })
   return (
     <>
       <MetaTags title={`${user.name || user.email} | User`} />
       <UserProfile user={user} />
+      <AnsweredQuestions questions={answeredQuestion || []} />
     </>
   )
 }

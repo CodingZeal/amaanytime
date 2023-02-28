@@ -37,6 +37,31 @@ describe('users', () => {
     expect(result).toEqual(scenario.user.one)
   })
 
+  scenario(
+    'associations',
+    'returns user asked/answered question',
+    async (scenario: AssociationsScenario) => {
+      const userAsked = await user({
+        id: scenario.user.withTeam.id,
+      })
+      const userAnswered = await user({
+        id: scenario.user.withoutTeam.id,
+      })
+      const questionsAsked = await db.question.findMany({
+        where: {
+          askedByUserId: userAsked.id,
+          answeredByUserId: userAnswered.id,
+        },
+      })
+      expect(questionsAsked[0].question).toEqual(
+        scenario.question.question1.question
+      )
+      expect(questionsAsked[0].answer).toEqual(
+        scenario.question.question1.answer
+      )
+    }
+  )
+
   describe('creates', () => {
     scenario('when no teams', async () => {
       const before = new Date()
@@ -124,7 +149,6 @@ describe('users', () => {
         const teamIds = [scenario.team.team1.id]
         const roleId = scenario.role.role1.id
         const roleIds = [`${teamId},${roleId}`]
-
         const result = await updateUser({
           id,
           input: {
