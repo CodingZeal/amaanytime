@@ -36,24 +36,28 @@ const EditProfile = ({ error, loading, profile, onSave }) => {
             My Profile
           </h2>
 
-          <TextInput name="name" label="name" value={profile.name} />
+          <TextInput name="name" label="name" defaultValue={profile.name} />
           <TextInput
             name="username"
             label="username"
-            value={profile.username}
+            defaultValue={profile.username}
           />
           <TextInput
             name="pronouns"
             label="pronouns"
-            value={profile.pronouns}
+            defaultValue={profile.pronouns}
           />
-          <TextInput name="bio" label="bio" value={profile.bio} />
+          <TextInput name="bio" label="bio" defaultValue={profile.bio} />
           <TextInput
             name="location"
             label="location"
-            value={profile.location}
+            defaultValue={profile.location}
           />
-          <TextInput name="website" label="website" value={profile.website} />
+          <TextInput
+            name="website"
+            label="website"
+            defaultValue={profile.website}
+          />
 
           <div className="flex max-w-[1000px] justify-end">
             <ActionButton

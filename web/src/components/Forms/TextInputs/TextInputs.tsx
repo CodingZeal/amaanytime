@@ -17,6 +17,7 @@ export interface IInputProps {
   wrapperProps?: HTMLProps<HTMLDivElement>
   name?: string
   label?: string
+  defaultValue?: string
   value?: string
   required?: boolean
   tabIndex?: number
@@ -59,6 +60,7 @@ export const TextInput = (props: IInputProps) => {
           className={INPUT_CLASSES.concat(` ${props.className || ''}`)}
           errorClassName={ERROR_CLASSES}
           name={props.name}
+          defaultValue={props.defaultValue}
           value={props.value}
           validation={{
             required: {

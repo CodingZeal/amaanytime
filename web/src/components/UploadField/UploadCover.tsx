@@ -15,7 +15,7 @@ const UploadCover = ({
 }) => {
   console.log(currentValue)
   return (
-    <div className="w-screen object-center" {...getRootProps()}>
+    <div {...getRootProps({ className: 'w-screen object-center' })}>
       <input name={name} type="hidden" {...registerReturn} />
       {currentValue && (
         <div>

@@ -13,7 +13,7 @@ describe('UploadField', () => {
     expect(() => {
       render(
         <Form>
-          <UploadField name="foobar" user={mockUser} />
+          <UploadField name="foobar" value={mockUser.cover} user={mockUser} />
         </Form>
       )
     }).not.toThrow()
@@ -29,37 +29,37 @@ describe('UploadField', () => {
       expect(screen.getByText('Browse Files')).toBeInTheDocument()
     })
 
-    //   it('displays cover image', async () => {
-    //     jest.spyOn(global, 'fetch').mockImplementation(
-    //       jest.fn(() =>
-    //         Promise.resolve({
-    //           json: () => Promise.resolve({ url: 'monkey.jpg' }),
-    //         })
-    //       ) as jest.Mock
-    //     )
-
-    //     render(
-    //       <Form>
-    //         <UploadField
-    //           name="cover"
-    //           user={mockUser}
-    //           type="cover"
-    //           value={mockUser.cover}
-    //         />
-    //       </Form>
-    //     )
-
-    //     await waitFor(() => {
-    //       fireEvent.drop(screen.getByLabelText(/browse/i), {
-    //         dataTransfer: {
-    //           files: [new File(['(⌐□_□)'], 'monkey.png', { type: 'image/png' })],
-    //           types: ['Files'],
-    //         },
+    // it('displays cover image', async () => {
+    //   jest.spyOn(global, 'fetch').mockImplementation(
+    //     jest.fn(() =>
+    //       Promise.resolve({
+    //         json: () => Promise.resolve({ url: 'monkey.jpg' }),
     //       })
-    //     })
+    //     ) as jest.Mock
+    //   )
 
-    //     // expect(screen.getByText('Browse Files')).not.toBeInTheDocument()
-    //     expect(screen.queryByRole('img')).toBeInTheDocument()
+    //   render(
+    //     <Form>
+    //       <UploadField
+    //         name="cover"
+    //         user={mockUser}
+    //         type="cover"
+    //         value={mockUser.cover}
+    //       />
+    //     </Form>
+    //   )
+
+    //   await waitFor(() => {
+    //     fireEvent.drop(screen.getByLabelText(/browse/i), {
+    //       dataTransfer: {
+    //         files: [new File(['(⌐□_□)'], 'monkey.png', { type: 'image/png' })],
+    //         types: ['Files'],
+    //       },
+    //     })
     //   })
+
+    //   // expect(screen.getByText('Browse Files')).not.toBeInTheDocument()
+    //   expect(screen.queryByRole('img')).toBeInTheDocument()
+    // })
   })
 })

@@ -20,7 +20,7 @@ const Cover = ({ user, src, className = '' }: ICover): JSX.Element => {
       ) : (
         <svg
           viewBox="0 0 1280 295"
-          width="auto"
+          width="100%"
           height="295px"
           fill={nameColor(displayName(user))}
           opacity="70%"
