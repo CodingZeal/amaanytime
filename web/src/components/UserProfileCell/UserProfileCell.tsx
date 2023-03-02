@@ -8,6 +8,7 @@ import { UserProfile } from 'src/components/UserProfile/UserProfile'
 
 import { AnsweredQuestions } from '../UserProfile/AnsweredQuestions/AnsweredQuestions'
 import { QuestionNavigation } from '../UserProfile/QuestionNavigation/QuestionNavigation'
+import { UnansweredQuestions } from '../UserProfile/UnansweredQuestions/UnansweredQuestions'
 import { UserQuestions } from '../UserProfile/UserQuestions/UserQuestions'
 
 export const QUERY = gql`
@@ -38,6 +39,7 @@ export const QUERY = gql`
         id
         question
         answer
+        askedOn
         updatedOn
         askedBy {
           username
@@ -68,6 +70,8 @@ export const Success = ({ user }: CellSuccessProps<FindUserById>) => {
     switch (currentTab) {
       case 'answered':
         return <AnsweredQuestions questions={user.questionsAnswered || []} />
+      case 'unanswered':
+        return <UnansweredQuestions questions={user.questionsAnswered || []} />
       default:
         return <UserQuestions questions={user.questionsAsked || []} />
     }
