@@ -36,12 +36,22 @@ const mockprops = {
 describe('AnsweredQuestions', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<AnsweredQuestions questions={mockprops.questionsAnswered} />)
+      render(
+        <AnsweredQuestions
+          questions={mockprops.questionsAnswered}
+          className={undefined}
+        />
+      )
     }).not.toThrow()
   })
 
   it('renders the question', () => {
-    render(<AnsweredQuestions questions={mockprops.questionsAnswered} />)
+    render(
+      <AnsweredQuestions
+        questions={mockprops.questionsAnswered}
+        className={undefined}
+      />
+    )
 
     expect(screen.getByText('Dwight Shrute?')).toBeInTheDocument()
   })

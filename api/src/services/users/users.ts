@@ -124,7 +124,10 @@ export const User: UserResolvers = {
     db.membership.findMany({ where: { userId: root.id } }),
 
   questionsAsked: (_obj, { root }) => {
-    return db.question.findMany({ where: { askedByUserId: root.id } })
+    return db.question.findMany({
+      where: { askedByUserId: root.id },
+      orderBy: { updatedOn: 'desc' },
+    })
   },
   questionsAnswered: (_obj, { root }) => {
     return db.question.findMany({

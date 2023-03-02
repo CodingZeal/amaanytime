@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import type { FindUserById } from 'types/graphql'
 
@@ -6,7 +6,9 @@ import { CellFailureProps, CellSuccessProps, MetaTags } from '@redwoodjs/web'
 
 import { UserProfile } from 'src/components/UserProfile/UserProfile'
 
-import { AnsweredQuestions } from '../AnsweredQuestions/AnsweredQuestions'
+import { AnsweredQuestions } from '../UserProfile/AnsweredQuestions/AnsweredQuestions'
+import { QuestionNavigation } from '../UserProfile/QuestionNavigation/QuestionNavigation'
+import { UserQuestions } from '../UserProfile/UserQuestions/UserQuestions'
 
 export const QUERY = gql`
   query FindUserById($id: String!) {
@@ -23,8 +25,14 @@ export const QUERY = gql`
       location
       website
       questionsAsked {
+        id
         question
         askedOn
+        askedBy {
+          username
+          name
+          avatar
+        }
       }
       questionsAnswered {
         id
@@ -50,16 +58,27 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ user }: CellSuccessProps<FindUserById>) => {
-  const [answeredQuestion, setAnsweredQuestion] = useState([])
+  const [currentTab, setCurrentTab] = useState('')
 
-  useState(() => {
-    setAnsweredQuestion(user.questionsAnswered)
-  })
+  const onTabChange = (tab: string) => {
+    setCurrentTab(tab)
+  }
+
+  const questionPage = useMemo(() => {
+    switch (currentTab) {
+      case 'answered':
+        return <AnsweredQuestions questions={user.questionsAnswered || []} />
+      default:
+        return <UserQuestions questions={user.questionsAsked || []} />
+    }
+  }, [currentTab, user])
+
   return (
-    <>
+    <div>
       <MetaTags title={`${user.name || user.email} | User`} />
       <UserProfile user={user} />
-      <AnsweredQuestions questions={answeredQuestion || []} />
-    </>
+      <QuestionNavigation currentTab={currentTab} onTabChange={onTabChange} />
+      {questionPage}
+    </div>
   )
 }

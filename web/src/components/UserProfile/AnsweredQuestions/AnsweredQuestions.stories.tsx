@@ -3,7 +3,7 @@ import type { ComponentMeta } from '@storybook/react'
 import { AnsweredQuestions } from './AnsweredQuestions'
 
 export const generated = () => {
-  return <AnsweredQuestions questions={undefined} />
+  return <AnsweredQuestions questions={undefined} className={undefined} />
 }
 
 export default {

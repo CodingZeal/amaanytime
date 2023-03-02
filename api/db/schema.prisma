@@ -32,8 +32,8 @@ model User {
   memberships         Membership[]
   verifyToken         String?
 
-  questionsAsked    Question[] @relation("QuestionAskedBy")
-  questionsAnswered Question[] @relation("QuestionAnsweredBy")
+  questionsAsked    Question[] @relation(name: "QuestionAskedBy")
+  questionsAnswered Question[] @relation(name: "QuestionAnsweredBy")
 }
 
 model Membership {
@@ -86,11 +86,11 @@ model Question {
   flag             Boolean?   @default(false)
   archive          Boolean?   @default(false)
 
-  parentQuestion   Question?  @relation("ThreadedQuestions", fields: [parentQuestionId], references: [id])
+  parentQuestion   Question?  @relation(name: "ThreadedQuestions", fields: [parentQuestionId], references: [id])
   parentQuestionId Int?       @unique
-  questions        Question[] @relation("ThreadedQuestions")
-  askedBy          User       @relation("QuestionAskedBy", fields: [askedByUserId], references: [id])
+  questions        Question[] @relation(name: "ThreadedQuestions")
+  askedBy          User       @relation(name: "QuestionAskedBy", fields: [askedByUserId], references: [id])
   askedByUserId    String     @db.Uuid()
-  answeredBy       User?      @relation("QuestionAnsweredBy", fields: [answeredByUserId], references: [id])
+  answeredBy       User?      @relation(name: "QuestionAnsweredBy", fields: [answeredByUserId], references: [id])
   answeredByUserId String?    @db.Uuid()
 }
