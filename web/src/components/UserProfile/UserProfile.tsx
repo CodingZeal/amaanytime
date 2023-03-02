@@ -10,6 +10,11 @@ const UserProfile = ({ user }) => {
       <div className="mx-5 -mt-20">
         <Avatar user={user} className="relative h-[120px] w-[120px]" />
         <div className="-mt-4 font-slab text-base font-medium">
+          <div className="relative -top-5 mx-1 flex justify-end">
+            <p className="rounded-full border-2 px-6 py-1 font-slab">
+              ASK QUESTION
+            </p>
+          </div>
           <h1 className="md:text-6xl font-condensed text-5xl text-punch">
             {user.name}
           </h1>

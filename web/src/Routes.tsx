@@ -39,6 +39,12 @@ const Routes = () => {
             <Route path="/profile/edit_password" page={ProfileEditPasswordPage} name="editPassword" />
             <Route path="/profile/edit_email" page={ProfileEditEmailPage} name="editEmail" />
           </Set>
+          <Set>
+            <Route path="/questions/new" page={QuestionNewQuestionPage} name="newQuestion" />
+            <Route path="/questions/{id:Int}/edit" page={QuestionEditQuestionPage} name="editQuestion" />
+            <Route path="/questions/{id:Int}" page={QuestionQuestionPage} name="question" />
+            <Route path="/questions" page={QuestionQuestionsPage} name="questions" />
+          </Set>
         </Private>
         <Private roles="super admin" unauthenticated="forbidden">
           <Set wrap={AdminLayout}>
@@ -59,12 +65,6 @@ const Routes = () => {
               <Route path="/admin/users/{id}/edit" page={AdminUserEditUserPage} name="adminEditUser" />
               <Route path="/admin/users/{id}" page={AdminUserUserPage} name="adminUser" />
               <Route path="/admin/users" page={AdminUserUsersPage} name="adminUsers" />
-            </Set>
-            <Set wrap={MainLayout}>
-              <Route path="/questions/new" page={QuestionNewQuestionPage} name="newQuestion" />
-              <Route path="/questions/{id:Int}/edit" page={QuestionEditQuestionPage} name="editQuestion" />
-              <Route path="/questions/{id:Int}" page={QuestionQuestionPage} name="question" />
-              <Route path="/questions" page={QuestionQuestionsPage} name="questions" />
             </Set>
           </Set>
         </Private>
