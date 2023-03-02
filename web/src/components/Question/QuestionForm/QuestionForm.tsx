@@ -192,7 +192,7 @@ const QuestionForm = (props: QuestionFormProps) => {
         <FieldError name="askedByUserId" className="rw-field-error" />
 
         <Label
-          name="answeredByUserId"
+          name="askedOfUserId"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
@@ -200,14 +200,14 @@ const QuestionForm = (props: QuestionFormProps) => {
         </Label>
 
         <TextField
-          name="answeredByUserId"
-          defaultValue={props.question?.answeredByUserId}
+          name="askedOfUserId"
+          defaultValue={props.question?.askedOfUserId}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
-        <FieldError name="answeredByUserId" className="rw-field-error" />
+        <FieldError name="askedOfUserId" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">

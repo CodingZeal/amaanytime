@@ -16,7 +16,7 @@ export const standard = defineScenario<Prisma.QuestionCreateArgs>({
             updatedAt: '2022-12-28T18:55:10.851Z',
           },
         },
-        answeredBy: {
+        askedOf: {
           create: {
             username: 'String9554943',
             email: 'String7908813',
@@ -40,7 +40,7 @@ export const standard = defineScenario<Prisma.QuestionCreateArgs>({
             updatedAt: '2022-12-28T18:55:10.851Z',
           },
         },
-        answeredBy: {
+        askedOf: {
           create: {
             username: 'String9660856',
             email: 'String686936',
@@ -64,7 +64,7 @@ export const standard = defineScenario<Prisma.QuestionCreateArgs>({
             updatedAt: '2022-12-29T18:09:40.569Z',
           },
         },
-        answeredBy: {
+        askedOf: {
           create: {
             username: 'String968728',
             email: 'String68328992',

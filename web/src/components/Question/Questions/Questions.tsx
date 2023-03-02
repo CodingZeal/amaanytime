@@ -75,7 +75,7 @@ const QuestionsList = ({ questions }: FindQuestions) => {
               <td>{checkboxInputTag(question.archive)}</td>
               <td>{truncate(question.parentQuestionId)}</td>
               <td>{truncate(question.askedByUserId)}</td>
-              <td>{truncate(question.answeredByUserId)}</td>
+              <td>{truncate(question.askedOfUserId)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

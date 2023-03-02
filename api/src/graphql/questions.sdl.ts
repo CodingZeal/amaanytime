@@ -19,8 +19,8 @@ export const schema = gql`
     questions: [Question]!
     askedBy: User!
     askedByUserId: String!
-    answeredBy: User
-    answeredByUserId: String
+    askedOf: User
+    askedOfUserId: String
   }
 
   type Query {
@@ -41,7 +41,7 @@ export const schema = gql`
     archive: Boolean
     parentQuestionId: Int
     askedByUserId: String
-    answeredByUserId: String
+    askedOfUserId: String
   }
 
   input UpdateQuestionInput {
@@ -56,7 +56,7 @@ export const schema = gql`
     archive: Boolean
     parentQuestionId: Int
     askedByUserId: String
-    answeredByUserId: String
+    askedOfUserId: String
   }
 
   type Mutation {

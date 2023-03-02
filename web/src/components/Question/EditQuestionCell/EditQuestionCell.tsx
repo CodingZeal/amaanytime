@@ -22,7 +22,7 @@ export const QUERY = gql`
       archive
       parentQuestionId
       askedByUserId
-      answeredByUserId
+      askedOfUserId
     }
   }
 `
@@ -41,7 +41,7 @@ const UPDATE_QUESTION_MUTATION = gql`
       archive
       parentQuestionId
       askedByUserId
-      answeredByUserId
+      askedOfUserId
     }
   }
 `

@@ -131,7 +131,7 @@ export const User: UserResolvers = {
   },
   questionsAnswered: (_obj, { root }) => {
     return db.question.findMany({
-      where: { answeredByUserId: root.id },
+      where: { askedOfUserId: root.id },
       orderBy: { updatedOn: 'desc' },
     })
   },

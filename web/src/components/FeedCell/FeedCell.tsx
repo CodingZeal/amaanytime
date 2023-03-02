@@ -19,13 +19,13 @@ export const QUERY = gql`
       archive
       parentQuestionId
       askedByUserId
-      answeredByUserId
+      askedOfUserId
       askedBy {
         username
         name
         avatar
       }
-      answeredBy {
+      askedOf {
         username
         name
         avatar

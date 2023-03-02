@@ -34,14 +34,14 @@ describe('questions', () => {
       input: {
         question: 'String',
         askedByUserId: scenario.question.two.askedByUserId,
-        answeredByUserId: scenario.question.two.answeredByUserId,
+        askedOfUserId: scenario.question.two.askedOfUserId,
       },
     })
 
     expect(result.question).toEqual('String')
     expect(result.askedByUserId).toEqual(scenario.question.two.askedByUserId)
-    expect(result.answeredByUserId).toEqual(
-      scenario.question.two.answeredByUserId
+    expect(result.askedOfUserId).toEqual(
+      scenario.question.two.askedOfUserId
     )
   })
 

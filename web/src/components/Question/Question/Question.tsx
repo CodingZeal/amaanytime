@@ -98,7 +98,7 @@ const Question = ({ question }: Props) => {
             </tr>
             <tr>
               <th>Answered by user id</th>
-              <td>{question.answeredByUserId}</td>
+              <td>{question.askedOfUserId}</td>
             </tr>
           </tbody>
         </table>

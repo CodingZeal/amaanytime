@@ -50,7 +50,7 @@ describe('users', () => {
       const questionsAsked = await db.question.findMany({
         where: {
           askedByUserId: userAsked.id,
-          answeredByUserId: userAnswered.id,
+          askedOfUserId: userAnswered.id,
         },
       })
       expect(questionsAsked[0].question).toEqual(

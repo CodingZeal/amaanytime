@@ -13,13 +13,13 @@ export const standard = () => ({
       archive: false,
       parentQuestionId: 1,
       askedByUserId: 'user3',
-      answeredByUserId: 'user2',
+      askedOfUserId: 'user2',
       askedBy: {
         name: 'Harry',
         username: 'potter',
         avatar: '',
       },
-      answeredBy: {
+      askedOf: {
         name: 'Foo Bar',
         username: 'foo',
         avatar:
@@ -39,13 +39,13 @@ export const standard = () => ({
       archive: false,
       parentQuestionId: 1,
       askedByUserId: 'user1',
-      answeredByUserId: 'user4',
+      askedOfUserId: 'user4',
       askedBy: {
         name: 'Foo Bar',
         username: 'foo',
         avatar: '',
       },
-      answeredBy: {
+      askedOf: {
         name: 'Harry',
         username: 'potter',
         avatar:

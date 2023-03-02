@@ -3,15 +3,15 @@ import { formatRelativeDate } from 'src/utils/DateHelpers'
 import { Avatar } from '../Avatar/Avatar'
 
 const FeedBlock = ({ question }) => {
-  const answeredBy = question?.answeredBy
+  const askedOf = question?.askedOf
   return (
     <div className="flex w-screen flex-col border py-10 px-5 text-base md:px-10 md:text-xl">
       <div className="md:flex-col-2 md:flex md:items-start">
-        <Avatar user={answeredBy} className="mr-5 mb-4 h-[68px] w-[68px]" />
+        <Avatar user={askedOf} className="mr-5 mb-4 h-[68px] w-[68px]" />
         <div className="flex flex-col justify-start md:basis-11/12">
           <div className="flex flex-row items-center font-sans">
-            <h3 className="mr-2 font-bold">{answeredBy?.name}</h3>
-            <p className="mr-2">@{answeredBy?.username}</p>
+            <h3 className="mr-2 font-bold">{askedOf?.name}</h3>
+            <p className="mr-2">@{askedOf?.username}</p>
             <div
               style={{
                 height: '2px',

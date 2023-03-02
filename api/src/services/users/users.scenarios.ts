@@ -80,7 +80,7 @@ export const associations = {
         question: 'String',
         answer: 'Example Answer',
         askedByUserId: scenario.user.withTeam.id,
-        answeredByUserId: scenario.user.withoutTeam.id,
+        askedOfUserId: scenario.user.withoutTeam.id,
       },
     }),
   },

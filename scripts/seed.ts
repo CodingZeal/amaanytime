@@ -92,6 +92,11 @@ async function generateQuestions(user) {
           id: user.id,
         },
       },
+      askedOf: {
+        connect: {
+          id: user.id,
+        },
+      },
     },
   })
 }

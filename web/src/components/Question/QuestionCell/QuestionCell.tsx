@@ -19,7 +19,7 @@ export const QUERY = gql`
       archive
       parentQuestionId
       askedByUserId
-      answeredByUserId
+      askedOfUserId
     }
   }
 `

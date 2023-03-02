@@ -33,7 +33,7 @@ model User {
   verifyToken         String?
 
   questionsAsked    Question[] @relation(name: "QuestionAskedBy")
-  questionsAnswered Question[] @relation(name: "QuestionAnsweredBy")
+  questionsAnswered Question[] @relation(name: "QuestionAskedOf")
 }
 
 model Membership {
@@ -78,6 +78,7 @@ model Question {
   id               Int        @id @default(autoincrement())
   question         String
   answer           String?
+  answered         Boolean    @default(false)
   order            Int?
   pinned           Boolean?   @default(false)
   askedOn          DateTime?  @default(now())
@@ -91,6 +92,6 @@ model Question {
   questions        Question[] @relation(name: "ThreadedQuestions")
   askedBy          User       @relation(name: "QuestionAskedBy", fields: [askedByUserId], references: [id])
   askedByUserId    String     @db.Uuid()
-  answeredBy       User?      @relation(name: "QuestionAnsweredBy", fields: [answeredByUserId], references: [id])
-  answeredByUserId String?    @db.Uuid()
+  askedOf          User       @relation(name: "QuestionAskedOf", fields: [askedOfUserId], references: [id])
+  askedOfUserId    String     @db.Uuid()
 }

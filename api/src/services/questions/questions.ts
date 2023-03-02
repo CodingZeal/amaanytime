@@ -69,14 +69,14 @@ export const Question: QuestionRelationResolvers = {
   askedBy: (_obj, { root }) => {
     return db.question.findUnique({ where: { id: root?.id } }).askedBy()
   },
-  answeredBy: (_obj, { root }) => {
-    return db.question.findUnique({ where: { id: root?.id } }).answeredBy()
+  askedOf: (_obj, { root }) => {
+    return db.question.findUnique({ where: { id: root?.id } }).askedOf()
   },
   feedAll: (_obj) => {
     return db.question.findMany({
       include: {
         askedBy: true,
-        answeredBy: true,
+        askedOf: true,
       },
     })
   },

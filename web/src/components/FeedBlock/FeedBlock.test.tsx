@@ -20,7 +20,7 @@ const mockprops = {
     avatar:
       'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
   },
-  answeredBy: {
+  askedOf: {
     name: 'Dwight Shrute',
     username: 'dwightshrute',
     avatar:
