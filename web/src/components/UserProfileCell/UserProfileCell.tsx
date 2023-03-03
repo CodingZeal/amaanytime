@@ -82,22 +82,7 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
 )
 
-const QuestionDisplay = ({ tab, user }) => {
-  const [answerQuestion] = useMutation(ANSWER_QUESTION_MUTATION, {
-    onCompleted: () => {
-      toast.success('Question answered')
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
-  })
-
-  const onSubmitAnswer = (answer, question) => {
-    answerQuestion({
-      variables: { id: question.id, input: { answer: answer } },
-    })
-  }
-
+const QuestionDisplay = ({ tab, user, onSubmitAnswer }) => {
   switch (tab) {
     case 'answered':
       return <AnsweredQuestions questions={user.questionsAnswered || []} />
@@ -113,15 +98,35 @@ const QuestionDisplay = ({ tab, user }) => {
   }
 }
 
-export const Success = ({ user }: CellSuccessProps<FindUserById>) => {
+export const Success = ({ user, refetch }: CellSuccessProps<FindUserById>) => {
   const [currentTab, setCurrentTab] = useState('')
+
+  const [answerQuestion] = useMutation(ANSWER_QUESTION_MUTATION, {
+    onCompleted: () => {
+      refetch()
+      toast.success('Question answered')
+    },
+    onError: (error) => {
+      toast.error(error.message)
+    },
+  })
+
+  const onSubmitAnswer = (answer, question) => {
+    answerQuestion({
+      variables: { id: question.id, input: { answer: answer } },
+    })
+  }
 
   return (
     <div>
       <MetaTags title={`${user.name || user.email} | User`} />
       <UserProfile user={user} />
       <QuestionNavigation currentTab={currentTab} onTabChange={setCurrentTab} />
-      <QuestionDisplay tab={currentTab} user={user} />
+      <QuestionDisplay
+        tab={currentTab}
+        user={user}
+        onSubmitAnswer={onSubmitAnswer}
+      />
     </div>
   )
 }
