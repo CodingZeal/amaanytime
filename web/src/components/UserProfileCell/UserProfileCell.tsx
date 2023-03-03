@@ -2,7 +2,9 @@ import { useState } from 'react'
 
 import type { FindUserById } from 'types/graphql'
 
+import { useMutation } from '@redwoodjs/web'
 import { CellFailureProps, CellSuccessProps, MetaTags } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 
 import { UserProfile } from 'src/components/UserProfile/UserProfile'
 
@@ -47,6 +49,27 @@ export const QUERY = gql`
           avatar
         }
       }
+      questionsUnanswered {
+        id
+        question
+        answer
+        askedOn
+        updatedOn
+        askedBy {
+          username
+          name
+          avatar
+        }
+      }
+    }
+  }
+`
+
+const ANSWER_QUESTION_MUTATION = gql`
+  mutation AnswerQuestionMutation($id: Int!, $input: AnswerQuestionInput!) {
+    answerQuestion(id: $id, input: $input) {
+      id
+      answer
     }
   }
 `
@@ -60,11 +83,31 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 const QuestionDisplay = ({ tab, user }) => {
+  const [answerQuestion] = useMutation(ANSWER_QUESTION_MUTATION, {
+    onCompleted: () => {
+      toast.success('Question answered')
+    },
+    onError: (error) => {
+      toast.error(error.message)
+    },
+  })
+
+  const onSubmitAnswer = (answer, question) => {
+    answerQuestion({
+      variables: { id: question.id, input: { answer: answer } },
+    })
+  }
+
   switch (tab) {
     case 'answered':
       return <AnsweredQuestions questions={user.questionsAnswered || []} />
     case 'unanswered':
-      return <UnansweredQuestions questions={user.questionsAnswered || []} />
+      return (
+        <UnansweredQuestions
+          onSubmitAnswer={onSubmitAnswer}
+          questions={user.questionsUnanswered || []}
+        />
+      )
     default:
       return <UserQuestions questions={user.questionsAsked || []} />
   }

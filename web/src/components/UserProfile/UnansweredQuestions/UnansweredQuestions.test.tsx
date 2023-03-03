@@ -1,4 +1,6 @@
-import { render, screen } from '@redwoodjs/testing/web'
+import userEvent from '@testing-library/user-event'
+
+import { render, screen, waitFor } from '@redwoodjs/testing/web'
 
 import { UnansweredQuestions } from './UnansweredQuestions'
 
@@ -45,5 +47,21 @@ describe('UnansweredQuestions', () => {
     render(<UnansweredQuestions questions={mockprops.questionsAnswered} />)
 
     expect(screen.getByText('Dwight Shrute?')).toBeInTheDocument()
+  })
+
+  describe('Answering Questions', () => {
+    it('submit button call handler', async () => {
+      const onSubmitAnswer = jest.fn()
+      render(
+        <UnansweredQuestions
+          questions={mockprops.questionsAnswered}
+          onSubmitAnswer={onSubmitAnswer}
+        />
+      )
+
+      const submitButton = screen.getByText('Answer Question')
+      await waitFor(() => userEvent.click(submitButton))
+      expect(onSubmitAnswer.mock.calls.length).toBe(1)
+    })
   })
 })

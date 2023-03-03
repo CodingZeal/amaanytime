@@ -1,8 +1,18 @@
+import { Form, InputField } from '@redwoodjs/forms'
+
+import { TextInput } from 'src/components/Forms'
+import { ActionButton } from 'src/components/Forms'
 import { formatRelativeDate } from 'src/utils/DateHelpers'
 
 import { Avatar } from '../../Avatar/Avatar'
 
-const UnansweredQuestions = ({ questions }) => {
+const UnansweredQuestions = ({ questions, onSubmitAnswer }) => {
+  const onFormSubmit = (form) => {
+    onSubmitAnswer(
+      form.Answer,
+      questions.find((q) => q.id === Number(form.questionId))
+    )
+  }
   return (
     <>
       {questions.map((question) => {
@@ -38,6 +48,20 @@ const UnansweredQuestions = ({ questions }) => {
                   <h3 className="mt-4 font-condensed text-3xl leading-10 md:mr-10 lg:text-4xl">
                     {question.question}
                   </h3>
+                  <Form onSubmit={onFormSubmit}>
+                    <InputField
+                      type="hidden"
+                      name="questionId"
+                      value={question.id}
+                    />
+                    <TextInput name="Answer" />
+                    <ActionButton
+                      data-testid="login-submit-button"
+                      type="submit"
+                    >
+                      Answer Question
+                    </ActionButton>
+                  </Form>
                 </div>
               </div>
             </div>
