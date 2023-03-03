@@ -15,6 +15,7 @@ export const schema = gql`
     website: String
     questionsAsked: [Question]
     questionsAnswered: [Question]
+    questionsUnanswered: [Question]
     updatedAt: DateTime!
     createdAt: DateTime!
     memberships: [Membership]

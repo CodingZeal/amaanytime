@@ -34,7 +34,9 @@ export const getCurrentUser = async (session) => {
       username: true,
     },
   })
-
+  console.log('---')
+  console.log(user)
+  console.log(session.id)
   const membershipRoles = await db.membershipRole.findMany({
     where: {
       membershipId: { in: user.memberships.map((membership) => membership.id) },

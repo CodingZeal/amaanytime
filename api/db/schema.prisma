@@ -33,7 +33,7 @@ model User {
   verifyToken         String?
 
   questionsAsked    Question[] @relation(name: "QuestionAskedBy")
-  questionsAnswered Question[] @relation(name: "QuestionAskedOf")
+  questionsAskedOf  Question[] @relation(name: "QuestionAskedOf")
 }
 
 model Membership {

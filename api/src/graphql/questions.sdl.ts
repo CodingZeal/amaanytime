@@ -3,6 +3,7 @@ export const schema = gql`
     id: Int!
     question: String!
     answer: String
+    answered: Boolean
     order: Int
     pinned: Boolean
     askedOn: DateTime
