@@ -41,6 +41,16 @@ export const updateQuestion: MutationResolvers['updateQuestion'] = ({
   })
 }
 
+export const answerQuestion: MutationResolvers['answerQuestion'] = ({
+  id,
+  input,
+}) => {
+  return db.question.update({
+    data: { answer: input.answer, answered: true },
+    where: { id },
+  })
+}
+
 export const deleteQuestion: MutationResolvers['deleteQuestion'] = ({ id }) => {
   return db.question.delete({
     where: { id },

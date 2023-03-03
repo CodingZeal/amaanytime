@@ -4,6 +4,7 @@ import {
   questions,
   questionsWithAnswers,
   question,
+  answerQuestion,
   createQuestion,
   updateQuestion,
   deleteQuestion,
@@ -40,9 +41,7 @@ describe('questions', () => {
 
     expect(result.question).toEqual('String')
     expect(result.askedByUserId).toEqual(scenario.question.two.askedByUserId)
-    expect(result.askedOfUserId).toEqual(
-      scenario.question.two.askedOfUserId
-    )
+    expect(result.askedOfUserId).toEqual(scenario.question.two.askedOfUserId)
   })
 
   scenario('updates a question', async (scenario: StandardScenario) => {
@@ -55,6 +54,19 @@ describe('questions', () => {
     })
 
     expect(result.question).toEqual('String2')
+  })
+
+  scenario('answers a question', async (scenario: StandardScenario) => {
+    const original = (await question({
+      id: scenario.question.one.id,
+    })) as Question
+    const result = await answerQuestion({
+      id: original.id,
+      input: { answer: 'Answer2' },
+    })
+
+    expect(result.answer).toEqual('Answer2')
+    expect(result.answered).toEqual(true)
   })
 
   scenario('deletes a question', async (scenario: StandardScenario) => {

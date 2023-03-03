@@ -60,9 +60,15 @@ export const schema = gql`
     askedOfUserId: String
   }
 
+  input AnswerQuestionInput {
+    answer: String
+  }
+
   type Mutation {
     createQuestion(input: CreateQuestionInput!): Question! @requireAuth
     updateQuestion(id: Int!, input: UpdateQuestionInput!): Question!
+      @requireAuth
+    answerQuestion(id: Int!, input: AnswerQuestionInput!): Question!
       @requireAuth
     deleteQuestion(id: Int!): Question! @requireAuth
   }

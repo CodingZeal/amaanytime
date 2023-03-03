@@ -7,6 +7,7 @@ export const standard = defineScenario<Prisma.QuestionCreateArgs>({
     one: {
       data: {
         question: 'String',
+        answered: false,
         askedBy: {
           create: {
             username: 'String5271824',
@@ -31,6 +32,7 @@ export const standard = defineScenario<Prisma.QuestionCreateArgs>({
       data: {
         question: 'String',
         answer: 'AnsweredQuestion1',
+        answered: true,
         askedBy: {
           create: {
             username: 'String4015156',
@@ -55,6 +57,7 @@ export const standard = defineScenario<Prisma.QuestionCreateArgs>({
       data: {
         question: 'String',
         answer: 'AnsweredQuestion2',
+        answered: true,
         askedBy: {
           create: {
             username: 'String402497',
