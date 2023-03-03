@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 
 import type { FindUserById } from 'types/graphql'
 
@@ -59,30 +59,26 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error.message}</div>
 )
 
+const QuestionDisplay = ({ tab, user }) => {
+  switch (tab) {
+    case 'answered':
+      return <AnsweredQuestions questions={user.questionsAnswered || []} />
+    case 'unanswered':
+      return <UnansweredQuestions questions={user.questionsAnswered || []} />
+    default:
+      return <UserQuestions questions={user.questionsAsked || []} />
+  }
+}
+
 export const Success = ({ user }: CellSuccessProps<FindUserById>) => {
   const [currentTab, setCurrentTab] = useState('')
-
-  const onTabChange = (tab: string) => {
-    setCurrentTab(tab)
-  }
-
-  const questionPage = useMemo(() => {
-    switch (currentTab) {
-      case 'answered':
-        return <AnsweredQuestions questions={user.questionsAnswered || []} />
-      case 'unanswered':
-        return <UnansweredQuestions questions={user.questionsAnswered || []} />
-      default:
-        return <UserQuestions questions={user.questionsAsked || []} />
-    }
-  }, [currentTab, user])
 
   return (
     <div>
       <MetaTags title={`${user.name || user.email} | User`} />
       <UserProfile user={user} />
-      <QuestionNavigation currentTab={currentTab} onTabChange={onTabChange} />
-      {questionPage}
+      <QuestionNavigation currentTab={currentTab} onTabChange={setCurrentTab} />
+      <QuestionDisplay tab={currentTab} user={user} />
     </div>
   )
 }
